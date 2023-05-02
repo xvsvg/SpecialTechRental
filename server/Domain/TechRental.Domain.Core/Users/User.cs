@@ -1,12 +1,15 @@
 ﻿using TechRental.Domain.Core.Abstractions;
 using TechRental.Domain.Core.Orders;
 using TechRental.Domain.Core.ValueObject;
+#pragma warning disable CS8618
 
 namespace TechRental.Domain.Core.Users;
 
 public class User
 {
     private readonly List<Order> _orders;
+
+    protected User() { }
 
     public User(
         Guid id,
