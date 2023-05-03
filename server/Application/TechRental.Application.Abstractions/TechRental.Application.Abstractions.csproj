@@ -8,4 +8,8 @@
 		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\TechRental.Application.Dto\TechRental.Application.Dto.csproj" />
+	</ItemGroup>
+
 </Project>
