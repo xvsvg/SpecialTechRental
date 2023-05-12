@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechRental.Presentation.Con
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechRental.Presentation.Services", "Presentation\TechRental.Presentation.Services\TechRental.Presentation.Services.csproj", "{021390D4-DB59-461A-BB60-89466EFD714D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechRental.Application", "Application\TechRental.Application\TechRental.Application.csproj", "{FC20BE7D-3798-49A8-89A5-0F51FBC1D896}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{021390D4-DB59-461A-BB60-89466EFD714D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{021390D4-DB59-461A-BB60-89466EFD714D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{021390D4-DB59-461A-BB60-89466EFD714D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC20BE7D-3798-49A8-89A5-0F51FBC1D896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC20BE7D-3798-49A8-89A5-0F51FBC1D896}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC20BE7D-3798-49A8-89A5-0F51FBC1D896}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC20BE7D-3798-49A8-89A5-0F51FBC1D896}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -127,6 +133,7 @@ Global
 		{F20A6691-96B7-49DB-B9F3-CB1BBF0DF637} = {ABE5E09D-184C-4D6E-BF23-D9522933427E}
 		{2C45837B-C24E-4B44-80CD-8D6796E8C29E} = {ABE5E09D-184C-4D6E-BF23-D9522933427E}
 		{021390D4-DB59-461A-BB60-89466EFD714D} = {ABE5E09D-184C-4D6E-BF23-D9522933427E}
+		{FC20BE7D-3798-49A8-89A5-0F51FBC1D896} = {90F7822E-D4F1-4587-946B-D6AC955937D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32C9BAC2-621B-48B2-8696-3F9197638C22}

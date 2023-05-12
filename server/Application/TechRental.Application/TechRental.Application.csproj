@@ -5,19 +5,17 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<WarningLevel>5</WarningLevel>
-		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+		<TreatWarningAsErrors>True</TreatWarningAsErrors>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="MediatR" Version="12.0.1" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Infrastructure\TechRental.Infrastructure.Mapping\TechRental.Infrastructure.Mapping.csproj" />
 	  <ProjectReference Include="..\TechRental.Application.Abstractions\TechRental.Application.Abstractions.csproj" />
 	  <ProjectReference Include="..\TechRental.Application.Common\TechRental.Application.Common.csproj" />
-	  <ProjectReference Include="..\TechRental.Application.Contracts\TechRental.Application.Contracts.csproj" />
-	  <ProjectReference Include="..\TechRental.DataAccess.Abstractions\TechRental.DataAccess.Abstractions.csproj" />
+	  <ProjectReference Include="..\TechRental.Application.Handlers\TechRental.Application.Handlers.csproj" />
 	</ItemGroup>
 
 </Project>
