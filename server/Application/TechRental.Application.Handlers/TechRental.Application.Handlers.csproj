@@ -8,4 +8,16 @@
 		<TreatWarningsAsErrors>True</TreatWarningsAsErrors>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="MediatR" Version="12.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Infrastructure\TechRental.Infrastructure.Mapping\TechRental.Infrastructure.Mapping.csproj" />
+	  <ProjectReference Include="..\TechRental.Application.Abstractions\TechRental.Application.Abstractions.csproj" />
+	  <ProjectReference Include="..\TechRental.Application.Common\TechRental.Application.Common.csproj" />
+	  <ProjectReference Include="..\TechRental.Application.Contracts\TechRental.Application.Contracts.csproj" />
+	  <ProjectReference Include="..\TechRental.DataAccess.Abstractions\TechRental.DataAccess.Abstractions.csproj" />
+	</ItemGroup>
+
 </Project>
