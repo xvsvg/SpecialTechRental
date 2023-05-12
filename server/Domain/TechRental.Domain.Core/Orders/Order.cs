@@ -24,12 +24,14 @@ public class Order
         Status = status;
         TotalPrice = total;
         OrderDate = orderDate;
+
+        user.AddOrder(this);
     }
 
     public Guid Id { get; }
     public User User { get; }
     public Guid UserId { get; }
-    public OrderStatus Status { get; }
+    public OrderStatus Status { get; set; }
     public DateTime OrderDate { get; }
 
     public decimal TotalPrice
