@@ -1,5 +1,7 @@
 ﻿using TechRental.Domain.Common.Exceptions;
 using TechRental.Domain.Core.Abstractions;
+using TechRental.Domain.Core.Users;
+#pragma warning disable CS8618
 
 namespace TechRental.Domain.Core.Orders;
 
@@ -7,19 +9,26 @@ public class Order
 {
     private decimal _totalPrice;
 
+    protected Order() { }
+
     public Order(
         Guid id,
+        User user,
         OrderStatus status,
         decimal total,
         DateTime orderDate)
     {
         Id = id;
+        User = user;
+        UserId = user.Id;
         Status = status;
         TotalPrice = total;
         OrderDate = orderDate;
     }
 
     public Guid Id { get; }
+    public User User { get; }
+    public Guid UserId { get; }
     public OrderStatus Status { get; }
     public DateTime OrderDate { get; }
 
