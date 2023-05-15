@@ -29,15 +29,15 @@ internal class CreateUserAccount : IRequestHandler<Command>
         if (_context.Users.Any(x => x.Id.Equals(request.UserId)) is false)
             throw EntityNotFoundException.For<User>(request.UserId);
 
-        if (_currentUser.CanCreateUserWithRole(request.Rolename) is false)
+        if (_currentUser.CanCreateUserWithRole(request.RoleName) is false)
             throw new AccessDeniedException(
-                $"User {_currentUser.Id} is not allowed to create user with role {request.Rolename}");
+                $"User {_currentUser.Id} is not allowed to create user with role {request.RoleName}");
 
         await _authorizationService.CreateUserAsync(
             request.UserId,
             request.Username,
             request.Password,
-            request.Rolename,
+            request.RoleName,
             cancellationToken);
     }
 }
