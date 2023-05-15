@@ -12,14 +12,14 @@ services:
       - '1433:5432'
     container_name: "database"
 
-  # backend:
-  #   image: application
-  #   restart: always
-  #   build:
-  #       context: ../
-  #       dockerfile: Presentation/Dockerfile
-  #   ports:
-  #       - "8080:8080"
-  #   environment:
-  #       - ASPNETCORE_ENVIRONMENT=Production
-  #   container_name: server
+  backend:
+    image: application
+    restart: always
+    build:
+        context: ../
+        dockerfile: Presentation\TechRental.Presentation.WebAPI\Dockerfile
+    ports:
+        - "8080:80"
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Production
+    container_name: server
