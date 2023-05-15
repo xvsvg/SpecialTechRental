@@ -30,4 +30,19 @@ internal static class SeedingHelper
             }
         }
     }
+
+    internal static async Task SeedRoles(IServiceProvider provider)
+    {
+        var service = provider.GetRequiredService<IAuthorizationService>();
+        var logger = provider.GetRequiredService<ILogger<Program>>();
+        try
+        {
+            await service.CreateRoleIfNotExistsAsync(TechRentalIdentityRoleNames.AdminRoleName);
+            await service.CreateRoleIfNotExistsAsync(TechRentalIdentityRoleNames.DefaultUserRoleName);
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "Failed to seed roles");
+        }
+    }
 }
