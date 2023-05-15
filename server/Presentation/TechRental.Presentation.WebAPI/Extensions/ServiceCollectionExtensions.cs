@@ -58,13 +58,11 @@ internal static class ServiceCollectionExtensions
             .AddDatabaseContext(o => o
                 .UseNpgsql(connectionString));
 
-        connectionString = configuration.PostgresConfiguration
-            .ToConnectionString(configuration.DbNamesConfiguration.IdentityDbName);
-
         collection.AddIdentityConfiguration(
             identityConfigurationSection,
             o => o.UseNpgsql(
-                configuration.PostgresConfiguration.ToConnectionString(connectionString)));
+                configuration.PostgresConfiguration.ToConnectionString(configuration.DbNamesConfiguration
+                    .IdentityDbName)));
 
         return collection;
     }
