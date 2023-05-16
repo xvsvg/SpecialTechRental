@@ -17,6 +17,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Remove="Properties\" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\..\Application\TechRental.Application.Abstractions\TechRental.Application.Abstractions.csproj" />
 	  <ProjectReference Include="..\..\Application\TechRental.Application.Contracts\TechRental.Application.Contracts.csproj" />
 	  <ProjectReference Include="..\TechRental.Presentation.Contracts\TechRental.Presentation.Contracts.csproj" />
