@@ -7,7 +7,7 @@ public class ImageValueConverter : ValueConverter<UserImage, string>
 {
     public ImageValueConverter()
         : base(
-            x => x.ToString() ?? string.Empty,
+            x => (x.Value.LongLength == 0L ? string.Empty : x.Value.ToString()) ?? string.Empty,
             x => new UserImage(Convert.FromBase64String(x)))
     {
     }
