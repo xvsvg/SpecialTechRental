@@ -19,4 +19,7 @@ internal class AdminUser : ICurrentUser
 
     public bool CanChangeOrderStatus()
         => true;
+
+    public bool CanManageBalance()
+        => false;
 }

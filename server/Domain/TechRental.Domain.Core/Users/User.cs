@@ -1,4 +1,5 @@
-﻿using TechRental.Domain.Core.Abstractions;
+﻿using TechRental.Domain.Common.Exceptions;
+using TechRental.Domain.Core.Abstractions;
 using TechRental.Domain.Core.Orders;
 using TechRental.Domain.Core.ValueObject;
 #pragma warning disable CS8618
@@ -8,6 +9,7 @@ namespace TechRental.Domain.Core.Users;
 public class User
 {
     private readonly List<Order> _orders;
+    private decimal _money;
 
     protected User() { }
 
@@ -35,6 +37,7 @@ public class User
         PhoneNumber = phoneNumber;
 
         _orders = new List<Order>();
+        Money = 0;
     }
 
     public Guid Id { get; }
@@ -45,6 +48,17 @@ public class User
     public DateTime BirthDate { get; }
     public PhoneNumber PhoneNumber { get; }
     public IEnumerable<Order> Orders => _orders;
+    public decimal Money
+    {
+        get => _money;
+        set
+        {
+            if (value < 0)
+                throw UserInputException.NegativeUserBalanceException();
+
+            _money = value;
+        }
+    }
 
     public override string ToString()
     {

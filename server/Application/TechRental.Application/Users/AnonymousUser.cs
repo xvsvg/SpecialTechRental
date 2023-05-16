@@ -17,4 +17,7 @@ internal class AnonymousUser : ICurrentUser
 
     public bool CanChangeOrderStatus()
         => throw UserHasNotAccessException.AnonymousUserHasNotAccess();
+
+    public bool CanManageBalance()
+        => throw UserHasNotAccessException.AnonymousUserHasNotAccess();
 }

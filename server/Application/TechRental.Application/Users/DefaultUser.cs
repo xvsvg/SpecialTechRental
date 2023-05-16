@@ -19,4 +19,7 @@ internal class DefaultUser : ICurrentUser
 
     public bool CanChangeOrderStatus()
         => false;
+
+    public bool CanManageBalance()
+        => true;
 }
