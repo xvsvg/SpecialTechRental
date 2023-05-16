@@ -23,6 +23,6 @@ internal class GetUserHandler : IRequestHandler<Query, Response>
         if (user is null)
             throw EntityNotFoundException.For<User>(request.UserId);
 
-        return new Response(user.ToDto());
+        return new Response(user.ToDto()!);
     }
 }

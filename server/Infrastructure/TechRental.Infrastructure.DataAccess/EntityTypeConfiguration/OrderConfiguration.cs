@@ -16,7 +16,6 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
         builder.Property(x => x.Status).HasConversion<OrderStatusValueConverter>();
 
         builder.HasOne(x => x.User)
-            .WithMany(x => x.Orders)
-            .HasForeignKey(x => x.UserId);
+            .WithMany(x => x.Orders);
     }
 }

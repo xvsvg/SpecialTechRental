@@ -8,13 +8,13 @@ using static TechRental.Application.Contracts.Identity.Commands.CreateUserAccoun
 
 namespace TechRental.Application.Handlers.Identity;
 
-internal class CreateUserAccount : IRequestHandler<Command>
+internal class CreateUserAccountHandler : IRequestHandler<Command>
 {
     private readonly IDatabaseContext _context;
     private readonly ICurrentUser _currentUser;
     private readonly IAuthorizationService _authorizationService;
 
-    public CreateUserAccount(
+    public CreateUserAccountHandler(
         IDatabaseContext context,
         IAuthorizationService authorizationService,
         ICurrentUser currentUser)

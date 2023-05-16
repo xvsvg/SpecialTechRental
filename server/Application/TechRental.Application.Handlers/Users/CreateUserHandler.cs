@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using TechRental.Application.Abstractions.Identity;
 using TechRental.DataAccess.Abstractions;
 using TechRental.Domain.Core.Abstractions;
 using TechRental.Domain.Core.Users;
@@ -31,6 +32,6 @@ internal class CreateUserHandler : IRequestHandler<Command, Response>
         _context.Users.Add(user);
         await _context.SaveChangesAsync(cancellationToken);
 
-        return new Response(user.ToDto());
+        return new Response(user.ToDto()!);
     }
 }

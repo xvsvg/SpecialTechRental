@@ -2,7 +2,6 @@
 
 public enum OrderStatus
 {
-    Created,
-    Processing,
-    Cancelled
+    Available,
+    Rented
 }

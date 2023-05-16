@@ -4,7 +4,7 @@ namespace TechRental.Application.Dto.Orders;
 
 public record OrderDto(
     Guid Id,
-    UserDto User,
+    UserDto? User,
     string Status,
     decimal Total,
     DateTime OrderDate);
