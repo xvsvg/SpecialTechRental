@@ -4,18 +4,13 @@ namespace TechRental.Presentation.WebAPI.Configuration;
 
 internal class WebApiConfiguration
 {
-    private readonly string ASPNETCORE_ENVIRONMENT;
-
     public WebApiConfiguration(IConfiguration configuration)
     {
         if (configuration is null)
             throw new ArgumentNullException(nameof(configuration));
 
-        ASPNETCORE_ENVIRONMENT = Environment
-            .GetEnvironmentVariable(nameof(ASPNETCORE_ENVIRONMENT)) ?? "Development";
-
         var postgresConfiguration = configuration
-            .GetSection(ASPNETCORE_ENVIRONMENT + nameof(PostgresConfiguration))
+            .GetSection(nameof(PostgresConfiguration))
             .Get<PostgresConfiguration>();
 
         PostgresConfiguration = postgresConfiguration ??
@@ -31,5 +26,4 @@ internal class WebApiConfiguration
 
     public PostgresConfiguration PostgresConfiguration { get; set; }
     public DbNamesConfiguration DbNamesConfiguration { get; set; }
-    public string EnvironmentVariable => ASPNETCORE_ENVIRONMENT;
 }
