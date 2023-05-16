@@ -15,16 +15,17 @@ internal static class ServiceCollectionExtensions
 {
     internal static IServiceCollection ConfigureServices(
         this IServiceCollection collection,
-        WebApiConfiguration configuration,
-        IConfigurationSection identityConfigurationSection)
+        WebApiConfiguration webApiConfiguration,
+        IConfigurationSection identityConfigurationSection,
+        IConfiguration configuration)
     {
         collection
             .AddControllers()
             .AddApplicationPart(typeof(IControllerProjectMarker).Assembly)
             .AddControllersAsServices();
 
-        string connectionString = configuration.PostgresConfiguration
-            .ToConnectionString(configuration.DbNamesConfiguration.ApplicationDbName);
+        string connectionString = webApiConfiguration.PostgresConfiguration
+            .ToConnectionString(webApiConfiguration.DbNamesConfiguration.ApplicationDbName);
 
         collection
             .AddEndpointsApiExplorer()
@@ -60,14 +61,14 @@ internal static class ServiceCollectionExtensions
                 var xmlFilename = $"{typeof(IControllerProjectMarker).Assembly.GetName().Name}.xml";
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             })
-            .AddApplication()
+            .AddApplication(configuration)
             .AddDatabaseContext(o => o
                 .UseNpgsql(connectionString));
 
         collection.AddIdentityConfiguration(
             identityConfigurationSection,
             o => o.UseNpgsql(
-                configuration.PostgresConfiguration.ToConnectionString(configuration.DbNamesConfiguration
+                webApiConfiguration.PostgresConfiguration.ToConnectionString(webApiConfiguration.DbNamesConfiguration
                     .IdentityDbName)));
 
         return collection;
