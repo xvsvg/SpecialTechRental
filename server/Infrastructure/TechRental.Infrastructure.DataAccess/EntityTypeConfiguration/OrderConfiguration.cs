@@ -10,9 +10,11 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
     public void Configure(EntityTypeBuilder<Order> builder)
     {
         builder.HasKey(x => x.Id);
-        builder.Property(x => x.OrderDate);
+        builder.Property(x => x.OrderDate).IsRequired(false);
         builder.Property(x => x.TotalPrice);
+        builder.Property(x => x.Name);
 
+        builder.Property(x => x.Image).HasConversion<ImageValueConverter>();
         builder.Property(x => x.Status).HasConversion<OrderStatusValueConverter>();
 
         builder.HasOne(x => x.User)
