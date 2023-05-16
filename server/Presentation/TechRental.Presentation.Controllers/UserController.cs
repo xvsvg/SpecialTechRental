@@ -95,12 +95,17 @@ public class UserController : ControllerBase
     /// <returns>All users</returns>
     [HttpGet]
     [Authorize(Roles = TechRentalIdentityRoleNames.AdminRoleName)]
-    public async Task<ActionResult<UserDto>> GetUsersAsync()
+    public async Task<ActionResult<GetAllUsersResponse>> GetUsersAsync(int? page)
     {
-        var query = new GetAllUsers.Query();
+        var query = new GetAllUsers.Query(page ?? 1);
         var response = await _mediator.Send(query);
 
-        return Ok(response.Users);
+        var getAllUserResponse = new GetAllUsersResponse(
+            response.Users,
+            response.Page,
+            response.TotalPages);
+
+        return Ok(getAllUserResponse);
     }
 
     /// <summary>
