@@ -25,7 +25,7 @@ internal class CreateUserHandler : IRequestHandler<Command, Response>
             request.Firstname,
             request.Middlename,
             request.Lastname,
-            new UserImage(request.UserImage),
+            new Image(request.UserImage),
             request.BirthDate,
             new PhoneNumber(request.PhoneNumber));
 
