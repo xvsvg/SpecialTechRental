@@ -13,24 +13,20 @@ public class Order
 
     public Order(
         Guid id,
-        User user,
+        User? user,
         OrderStatus status,
         decimal total,
         DateTime orderDate)
     {
         Id = id;
         User = user;
-        UserId = user.Id;
         Status = status;
         TotalPrice = total;
         OrderDate = orderDate;
-
-        user.AddOrder(this);
     }
 
     public Guid Id { get; }
-    public User User { get; }
-    public Guid UserId { get; }
+    public User? User { get; }
     public OrderStatus Status { get; set; }
     public DateTime OrderDate { get; }
 
