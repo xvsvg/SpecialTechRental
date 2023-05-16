@@ -25,6 +25,11 @@ public class CurrentUserProxy : ICurrentUser, ICurrentUserManager
         return _user.CanChangeOrderStatus();
     }
 
+    public bool CanManageBalance()
+    {
+        return _user.CanManageBalance();
+    }
+
     public void Authenticate(ClaimsPrincipal principal)
     {
         var roles = principal.Claims
