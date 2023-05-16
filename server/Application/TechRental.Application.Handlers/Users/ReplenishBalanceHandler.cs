@@ -25,12 +25,13 @@ internal class ReplenishBalanceHandler : IRequestHandler<Command>
             throw UserHasNotAccessException.AnonymousUserHasNotAccess();
 
         var user = await _context.Users
-            .FirstOrDefaultAsync(x => x.Id.Equals(_currentUser.Id),
+            .FirstOrDefaultAsync(x => x.Id.Equals(request.UserId),
                 cancellationToken);
 
         if (user is null)
-            throw EntityNotFoundException.For<User>(_currentUser.Id);
+            throw EntityNotFoundException.For<User>(request.UserId);
 
         user.Money += request.Total;
+        await _context.SaveChangesAsync(cancellationToken);
     }
 }
