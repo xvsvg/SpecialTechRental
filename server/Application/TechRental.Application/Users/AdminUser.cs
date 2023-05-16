@@ -17,7 +17,7 @@ internal class AdminUser : ICurrentUser
     public bool CanChangeUserRole(string currentRoleName, string newRoleName)
         => true;
 
-    public bool CanChangeOrderStatus()
+    public bool CanManageOrders()
         => true;
 
     public bool CanManageBalance()
