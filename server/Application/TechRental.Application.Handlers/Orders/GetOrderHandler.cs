@@ -8,11 +8,11 @@ using static TechRental.Application.Contracts.Orders.Queries.GetOrder;
 
 namespace TechRental.Application.Handlers.Orders;
 
-internal class GetOrder : IRequestHandler<Query, Response>
+internal class GetOrderHandler : IRequestHandler<Query, Response>
 {
     private readonly IDatabaseContext _context;
 
-    public GetOrder(IDatabaseContext context)
+    public GetOrderHandler(IDatabaseContext context)
     {
         _context = context;
     }

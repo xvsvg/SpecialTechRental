@@ -9,12 +9,12 @@ using static TechRental.Application.Contracts.Orders.Commands.ChangeOrderStatus;
 
 namespace TechRental.Application.Handlers.Orders;
 
-internal class ChangeOrderStatus : IRequestHandler<Command>
+internal class ChangeOrderStatusHandler : IRequestHandler<Command>
 {
     private readonly IDatabaseContext _context;
     private readonly ICurrentUser _currentUser;
 
-    public ChangeOrderStatus(IDatabaseContext context, ICurrentUser currentUser)
+    public ChangeOrderStatusHandler(IDatabaseContext context, ICurrentUser currentUser)
     {
         _context = context;
         _currentUser = currentUser;
@@ -22,7 +22,7 @@ internal class ChangeOrderStatus : IRequestHandler<Command>
 
     public async Task Handle(Command request, CancellationToken cancellationToken)
     {
-        if (_currentUser.CanChangeOrderStatus() is false)
+        if (_currentUser.CanManageOrders() is false)
             throw new UnauthorizedException("You are not authorized");
 
         var order = await _context.Orders.FindAsync(request.OrderId, cancellationToken);
