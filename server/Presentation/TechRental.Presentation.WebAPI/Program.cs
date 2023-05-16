@@ -13,7 +13,8 @@ var identityConfigurationSection = builder.Configuration.GetSection("Identity:Id
 
 builder.Services.ConfigureServices(
     webApiConfiguration,
-    identityConfigurationSection);
+    identityConfigurationSection,
+    builder.Configuration);
 
 var app = builder.Build().Configure();
 

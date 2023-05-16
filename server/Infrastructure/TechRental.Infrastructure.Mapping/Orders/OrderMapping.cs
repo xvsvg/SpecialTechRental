@@ -8,7 +8,7 @@ public static class OrderMapping
 {
     public static IEnumerable<UserOrderDto> ToDto(this IEnumerable<Order> orders)
     {
-        return orders.Select(order => order.ToUserOrderDto());
+        return orders?.Select(order => order.ToUserOrderDto()) ?? Array.Empty<UserOrderDto>();
     }
 
     public static OrderDto ToDto(this Order order)

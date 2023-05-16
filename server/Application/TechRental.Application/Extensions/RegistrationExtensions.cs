@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using TechRental.Application.Abstractions.Identity;
 using TechRental.Application.Handlers.Extensions;
 using TechRental.Application.Users;
@@ -7,9 +8,9 @@ namespace TechRental.Application.Extensions;
 
 public static class RegistrationExtensions
 {
-    public static IServiceCollection AddApplication(this IServiceCollection collection)
+    public static IServiceCollection AddApplication(this IServiceCollection collection, IConfiguration configuration)
     {
-        collection.AddHandlers();
+        collection.AddHandlers(configuration);
         collection.AddCurrentUser();
 
         return collection;

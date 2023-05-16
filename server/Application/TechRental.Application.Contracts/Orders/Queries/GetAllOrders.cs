@@ -5,7 +5,7 @@ namespace TechRental.Application.Contracts.Orders.Queries;
 
 internal class GetAllOrders
 {
-    public record Query() : IRequest<Response>;
+    public record Query(int Page) : IRequest<Response>;
 
-    public record Response(IEnumerable<UserOrderDto> Orders);
+    public record Response(IEnumerable<UserOrderDto> Orders, int Page, int TotalPages);
 }

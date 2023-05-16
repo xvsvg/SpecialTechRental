@@ -75,11 +75,16 @@ public class OrderController : ControllerBase
     /// </summary>
     /// <returns>Information about all orders</returns>
     [HttpGet]
-    public async Task<ActionResult<OrderDto>> GetAllOrdersAsync()
+    public async Task<ActionResult<GetAllOrdersResponse>> GetAllOrdersAsync(int? page)
     {
-        var query = new GetAllOrders.Query();
+        var query = new GetAllOrders.Query(page ?? 1);
         var response = await _mediator.Send(query);
 
-        return Ok(response.Orders);
+        var getAllOrdersResponse = new GetAllOrdersResponse(
+            response.Orders,
+            response.Page,
+            response.TotalPages);
+
+        return Ok(getAllOrdersResponse);
     }
 }
