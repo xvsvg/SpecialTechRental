@@ -14,6 +14,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(x => x.FirstName);
         builder.Property(x => x.MiddleName);
         builder.Property(x => x.BirthDate);
+        builder.Property(x => x.Money);
 
         builder.Property(x => x.Image).HasConversion<ImageValueConverter>();
         builder.Property(x => x.PhoneNumber).HasConversion<PhoneNumberValueConverter>();
