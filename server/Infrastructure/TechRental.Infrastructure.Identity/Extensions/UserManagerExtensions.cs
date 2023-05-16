@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using TechRental.Domain.Common.Exceptions;
-using TechRental.Domain.Core.Users;
 using TechRental.Infrastructure.Identity.Entities;
 
 namespace TechRental.Infrastructure.Identity.Extensions;
