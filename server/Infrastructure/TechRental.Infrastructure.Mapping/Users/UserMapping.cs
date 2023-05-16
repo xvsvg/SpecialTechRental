@@ -6,6 +6,11 @@ namespace TechRental.Infrastructure.Mapping.Users;
 
 public static class UserMapping
 {
+    public static IEnumerable<UserDto> ToDto(this IEnumerable<User> users)
+    {
+        return users.Select(x => x.ToDto()!);
+    }
+
     public static UserDto? ToDto(this User? user)
     {
         if (user is null)
