@@ -17,7 +17,7 @@ internal class DefaultUser : ICurrentUser
     public bool CanChangeUserRole(string currentRoleName, string newRoleName)
         => false;
 
-    public bool CanChangeOrderStatus()
+    public bool CanManageOrders()
         => false;
 
     public bool CanManageBalance()

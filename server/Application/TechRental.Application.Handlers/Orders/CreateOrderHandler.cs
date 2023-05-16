@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using TechRental.Application.Abstractions.Identity;
 using TechRental.Application.Common.Exceptions;
 using TechRental.DataAccess.Abstractions;
 using TechRental.Domain.Core.Abstractions;
@@ -9,28 +10,30 @@ using static TechRental.Application.Contracts.Orders.Commands.CreateOrder;
 
 namespace TechRental.Application.Handlers.Orders;
 
-internal class CreateOrder : IRequestHandler<Command, Response>
+internal class CreateOrderHandler : IRequestHandler<Command, Response>
 {
     private readonly IDatabaseContext _context;
+    private readonly ICurrentUser _currentUser;
 
-    public CreateOrder(IDatabaseContext context)
+    public CreateOrderHandler(IDatabaseContext context, ICurrentUser currentUser)
     {
         _context = context;
+        _currentUser = currentUser;
     }
 
     public async Task<Response> Handle(Command request, CancellationToken cancellationToken)
     {
-        var user = await _context.Users.FindAsync(request.UserId, cancellationToken);
-
-        if (user is null)
-            throw EntityNotFoundException.For<User>(request.UserId);
+        if (_currentUser.CanManageOrders() is false)
+            throw UserHasNotAccessException.AccessViolation();
 
         var order = new Order(
             Guid.NewGuid(),
-            user,
+            null,
+            request.Name,
+            new Image(request.OrderImage),
             Enum.Parse<OrderStatus>(request.Status),
             request.Total,
-            DateTime.UtcNow);
+            null);
 
         _context.Orders.Add(order);
         await _context.SaveChangesAsync(cancellationToken);

@@ -10,6 +10,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Application\TechRental.Application.Dto\TechRental.Application.Dto.csproj" />
+	  <ProjectReference Include="..\..\Domain\TechRental.Domain.Core\TechRental.Domain.Core.csproj" />
 	</ItemGroup>
 
 </Project>

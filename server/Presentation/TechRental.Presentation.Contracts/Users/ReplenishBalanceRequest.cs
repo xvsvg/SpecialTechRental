@@ -1,3 +1,3 @@
 ﻿namespace TechRental.Presentation.Contracts.Users;
 
-public record RemoveOrderRequest(Guid OrderId);
+public record ReplenishBalanceRequest(decimal Total);

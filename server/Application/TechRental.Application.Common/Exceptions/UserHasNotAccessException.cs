@@ -10,6 +10,11 @@ public class UserHasNotAccessException : ApplicationException
         return new UserHasNotAccessException($"User {userId} has not access to this field");
     }
 
+    public static UserHasNotAccessException AccessViolation()
+    {
+        return new UserHasNotAccessException($"User has not access to this field");
+    }
+
     public static UserHasNotAccessException AnonymousUserHasNotAccess()
     {
         return new UserHasNotAccessException("Anonymous user cannot have an access to this information");

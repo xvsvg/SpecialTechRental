@@ -20,9 +20,9 @@ public class CurrentUserProxy : ICurrentUser, ICurrentUserManager
         return _user.CanChangeUserRole(currentRoleName, newRoleName);
     }
 
-    public bool CanChangeOrderStatus()
+    public bool CanManageOrders()
     {
-        return _user.CanChangeOrderStatus();
+        return _user.CanManageOrders();
     }
 
     public bool CanManageBalance()

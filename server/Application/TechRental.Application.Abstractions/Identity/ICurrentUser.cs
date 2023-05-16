@@ -8,7 +8,7 @@ public interface ICurrentUser
 
     bool CanChangeUserRole(string currentRoleName, string newRoleName);
 
-    bool CanChangeOrderStatus();
+    bool CanManageOrders();
 
     bool CanManageBalance();
 }

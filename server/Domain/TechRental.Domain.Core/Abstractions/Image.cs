@@ -1,8 +1,8 @@
 ﻿namespace TechRental.Domain.Core.Abstractions;
 
-public class UserImage
+public class Image
 {
-    public UserImage(byte[] image)
+    public Image(byte[] image)
     {
         Value = image;
     }

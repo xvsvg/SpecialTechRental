@@ -8,7 +8,7 @@ namespace TechRental.Domain.Core.Users;
 
 public class User
 {
-    private readonly List<Order> _orders;
+    private List<Order> _orders;
     private decimal _money;
 
     protected User() { }
@@ -18,7 +18,7 @@ public class User
         string firstName,
         string middleName,
         string lastName,
-        UserImage image,
+        Image image,
         DateTime birthDate,
         PhoneNumber phoneNumber)
     {
@@ -44,17 +44,17 @@ public class User
     public string FirstName { get; }
     public string MiddleName { get; }
     public string LastName { get; }
-    public UserImage Image { get; }
+    public Image Image { get; }
     public DateTime BirthDate { get; }
     public PhoneNumber PhoneNumber { get; }
-    public IEnumerable<Order> Orders => _orders;
+    public virtual IEnumerable<Order> Orders => _orders;
     public decimal Money
     {
         get => _money;
         set
         {
             if (value < 0)
-                throw UserInputException.NegativeUserBalanceException();
+                throw UserInputException.NegativeUserBalanceException("User has not enough money");
 
             _money = value;
         }
@@ -69,11 +69,18 @@ public class User
     {
         ArgumentNullException.ThrowIfNull(order);
 
+        if (_orders is null)
+            _orders = new List<Order>();
+
         _orders.Add(order);
+        order.User = this;
 
         return order;
     }
 
     public void RemoveOrder(Order order)
-        => _orders.Remove(order);
+    {
+        order.User = null;
+        _orders.Remove(order);
+    }
 }

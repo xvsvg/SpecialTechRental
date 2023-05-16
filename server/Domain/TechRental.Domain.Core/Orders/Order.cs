@@ -14,21 +14,27 @@ public class Order
     public Order(
         Guid id,
         User? user,
+        string name,
+        Image image,
         OrderStatus status,
         decimal total,
-        DateTime orderDate)
+        DateTime? orderDate)
     {
         Id = id;
         User = user;
+        Name = name;
+        Image = image;
         Status = status;
         TotalPrice = total;
         OrderDate = orderDate;
     }
 
     public Guid Id { get; }
-    public User? User { get; }
+    public virtual User? User { get; set; }
+    public string Name { get; }
+    public Image Image { get; }
     public OrderStatus Status { get; set; }
-    public DateTime OrderDate { get; }
+    public DateTime? OrderDate { get; set; }
 
     public decimal TotalPrice
     {

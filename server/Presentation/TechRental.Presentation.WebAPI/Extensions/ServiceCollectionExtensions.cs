@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 using TechRental.Application.Extensions;
 using TechRental.Infrastructure.DataAccess.Extensions;
 using TechRental.Infrastructure.Identity.Extensions;
@@ -53,6 +56,9 @@ internal static class ServiceCollectionExtensions
                         new List<string>()
                     },
                 });
+
+                var xmlFilename = $"{typeof(IControllerProjectMarker).Assembly.GetName().Name}.xml";
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             })
             .AddApplication()
             .AddDatabaseContext(o => o

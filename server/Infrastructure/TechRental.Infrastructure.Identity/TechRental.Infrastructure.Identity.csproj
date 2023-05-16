@@ -16,6 +16,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Application\TechRental.Application.Abstractions\TechRental.Application.Abstractions.csproj" />
 	  <ProjectReference Include="..\..\Application\TechRental.Application.Dto\TechRental.Application.Dto.csproj" />
+	  <ProjectReference Include="..\..\Domain\TechRental.Domain.Common\TechRental.Domain.Common.csproj" />
 	</ItemGroup>
 
 </Project>

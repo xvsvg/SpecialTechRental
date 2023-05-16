@@ -8,36 +8,34 @@ using static TechRental.Application.Contracts.Identity.Commands.CreateUserAccoun
 
 namespace TechRental.Application.Handlers.Identity;
 
-internal class CreateUserAccountHandler : IRequestHandler<Command>
+internal class CreateUserAccountHandler : IRequestHandler<Command, Response>
 {
-    private readonly IDatabaseContext _context;
     private readonly ICurrentUser _currentUser;
     private readonly IAuthorizationService _authorizationService;
 
     public CreateUserAccountHandler(
-        IDatabaseContext context,
         IAuthorizationService authorizationService,
         ICurrentUser currentUser)
     {
-        _context = context;
         _authorizationService = authorizationService;
         _currentUser = currentUser;
     }
 
-    public async Task Handle(Command request, CancellationToken cancellationToken)
+    public async Task<Response> Handle(Command request, CancellationToken cancellationToken)
     {
-        if (_context.Users.Any(x => x.Id.Equals(request.UserId)) is false)
-            throw EntityNotFoundException.For<User>(request.UserId);
-
         if (_currentUser.CanCreateUserWithRole(request.RoleName) is false)
             throw new AccessDeniedException(
                 $"User {_currentUser.Id} is not allowed to create user with role {request.RoleName}");
 
-        await _authorizationService.CreateUserAsync(
-            request.UserId,
-            request.Username,
-            request.Password,
-            request.RoleName,
-            cancellationToken);
+        var response = await _authorizationService.CreateUserAsync(
+                Guid.NewGuid(),
+                request.Username,
+                request.Password,
+                request.RoleName,
+                cancellationToken);
+
+        var token = await _authorizationService.GetUserTokenAsync(response.Username, cancellationToken);
+
+        return new Response(token);
     }
 }

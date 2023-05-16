@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TechRental.Application.Common.Exceptions;
 using TechRental.DataAccess.Abstractions;
+using TechRental.Domain.Core.Abstractions;
 using TechRental.Domain.Core.Orders;
 using TechRental.Domain.Core.Users;
 using static TechRental.Application.Contracts.Users.Commands.RemoveOrder;
@@ -28,8 +29,15 @@ internal class RemoveOrderHandler : IRequestHandler<Command>
         if (order is null)
             throw EntityNotFoundException.For<Order>(request.OrderId);
 
+        ProcessOperation(order);
         user.RemoveOrder(order);
 
         await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    private static void ProcessOperation(Order order)
+    {
+        order.OrderDate = null;
+        order.Status = OrderStatus.Available;
     }
 }

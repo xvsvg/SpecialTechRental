@@ -19,6 +19,11 @@ public class IdentityController : ControllerBase
         _mediator = mediator;
     }
 
+    /// <summary>
+    /// Logs in user in the system.
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns>Jwt access token</returns>
     [HttpPost("login")]
     public async Task<ActionResult<LoginResponse>> LoginAsync([FromBody] LoginRequest request)
     {
@@ -29,6 +34,12 @@ public class IdentityController : ControllerBase
         return Ok(loginResponse);
     }
 
+    /// <summary>
+    /// Changes user role to the given one
+    /// </summary>
+    /// <param name="username">Target username</param>
+    /// <param name="roleName">User new role</param>
+    /// <returns></returns>
     [HttpPut("users/{username}/role")]
     [Authorize(Roles = TechRentalIdentityRoleNames.AdminRoleName)]
     public async Task<IActionResult> ChangeUserRoleAsync(string username, [FromQuery] string roleName)
@@ -39,16 +50,26 @@ public class IdentityController : ControllerBase
         return Ok();
     }
 
-    [HttpPost("user/{id:guid}/create")]
-    [Authorize(Roles = TechRentalIdentityRoleNames.AdminRoleName)]
-    public async Task<IActionResult> CreateUserAccountAsync(Guid id, [FromBody] CreateUserAccountRequest request)
+    /// <summary>
+    /// Registers user in a system
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns>Jwt access token</returns>
+    [HttpPost("user/register")]
+    public async Task<ActionResult<CreateUserAccountResponse>> CreateUserAccountAsync([FromBody] CreateUserAccountRequest request)
     {
-        var command = new CreateUserAccount.Command(id, request.Username, request.Password, request.RoleName);
-        await _mediator.Send(command);
+        var command = new CreateUserAccount.Command(request.Username, request.Password, request.RoleName);
+        var response = await _mediator.Send(command);
 
-        return Ok();
+        var registerResponse = new CreateUserAccountResponse(response.Token);
+        return Ok(registerResponse);
     }
 
+    /// <summary>
+    /// Changes current user name to the provided one
+    /// </summary>
+    /// <param name="request">New username</param>
+    /// <returns>Jwt access token</returns>
     [HttpPut("username")]
     [Authorize]
     public async Task<ActionResult<UpdateUsernameResponse>> UpdateUsernameAsync([FromBody] UpdateUsernameRequest request)
@@ -59,6 +80,11 @@ public class IdentityController : ControllerBase
         return Ok(new UpdateUsernameResponse(response.Token));
     }
 
+    /// <summary>
+    /// Changes current user password to the provided one
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns>Jwt access token</returns>
     [HttpPut("password")]
     [Authorize]
     public async Task<ActionResult<UpdatePasswordResponse>> UpdatePasswordAsync([FromBody] UpdatePasswordRequest request)

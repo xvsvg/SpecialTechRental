@@ -16,6 +16,8 @@ public static class OrderMapping
         return new OrderDto(
             order.Id,
             order.User.ToDto(),
+            order.Name,
+            order.Image.Value,
             order.Status.ToString(),
             order.TotalPrice,
             order.OrderDate);
@@ -26,6 +28,8 @@ public static class OrderMapping
         return new UserOrderDto(
             order.Id,
             order.Status.ToString(),
+            order.Name,
+            order.Image.Value,
             order.TotalPrice,
             order.OrderDate);
     }
