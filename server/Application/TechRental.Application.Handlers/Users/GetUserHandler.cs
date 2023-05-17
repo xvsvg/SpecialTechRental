@@ -18,7 +18,7 @@ internal class GetUserHandler : IRequestHandler<Query, Response>
 
     public async Task<Response> Handle(Query request, CancellationToken cancellationToken)
     {
-        var user = await _context.Users.FindAsync(request, cancellationToken);
+        var user = await _context.Users.FindAsync(request.UserId, cancellationToken);
 
         if (user is null)
             throw EntityNotFoundException.For<User>(request.UserId);

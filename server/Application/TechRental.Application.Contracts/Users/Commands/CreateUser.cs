@@ -5,7 +5,7 @@ namespace TechRental.Application.Contracts.Users.Commands;
 
 internal static class CreateUser
 {
-    public record Command(string Firstname, string Middlename, string Lastname, byte[] UserImage, DateTime BirthDate,
+    public record Command(Guid IdentityId, string Firstname, string Middlename, string Lastname, byte[] UserImage, DateTime BirthDate,
         string PhoneNumber) : IRequest<Response>;
 
     public record Response(UserDto User);

@@ -24,12 +24,14 @@ public class UserController : ControllerBase
     /// Creates user account with all his personnel data
     /// </summary>
     /// <param name="request"></param>
+    /// <param name="identityId">identity id that is trying to create profile</param>
     /// <returns>Information about created account</returns>
-    [HttpPost("profile")]
+    [HttpPost("{identityId:guid}/profile")]
     [Authorize]
-    public async Task<ActionResult<UserDto>> CreateUserAsync([FromBody] CreateUserRequest request)
+    public async Task<ActionResult<UserDto>> CreateUserAsync(Guid identityId, [FromBody] CreateUserRequest request)
     {
         var command = new CreateUser.Command(
+            identityId,
             request.FirstName,
             request.MiddleName,
             request.LastName,
@@ -80,7 +82,7 @@ public class UserController : ControllerBase
     /// <param name="id">Target user id</param>
     /// <returns>Information about specified user</returns>
     [HttpGet("{id:guid}")]
-    [Authorize(Roles = TechRentalIdentityRoleNames.AdminRoleName)]
+    [Authorize]
     public async Task<ActionResult<UserDto>> GetUserAsync(Guid id)
     {
         var query = new GetUser.Query(id);

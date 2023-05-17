@@ -28,6 +28,6 @@ internal class LoginHandler : IRequestHandler<Query, Response>
 
         var token = await _authorizationService.GetUserTokenAsync(request.Username, cancellationToken);
 
-        return new Response(token);
+        return new Response(user.Id, token);
     }
 }
