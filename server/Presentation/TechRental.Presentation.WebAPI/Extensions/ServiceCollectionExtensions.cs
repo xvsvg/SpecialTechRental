@@ -7,6 +7,7 @@ using TechRental.Application.Extensions;
 using TechRental.Infrastructure.DataAccess.Extensions;
 using TechRental.Infrastructure.Identity.Extensions;
 using TechRental.Presentation.Controllers;
+using TechRental.Presentation.Middlewares;
 using TechRental.Presentation.WebAPI.Configuration;
 
 namespace TechRental.Presentation.WebAPI.Extensions;
@@ -70,6 +71,8 @@ internal static class ServiceCollectionExtensions
             o => o.UseNpgsql(
                 webApiConfiguration.PostgresConfiguration.ToConnectionString(webApiConfiguration.DbNamesConfiguration
                     .IdentityDbName)));
+
+        collection.AddTransient<ExceptionHandlingMiddleware>();
 
         return collection;
     }

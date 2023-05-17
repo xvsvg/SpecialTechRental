@@ -24,7 +24,7 @@ internal class CreateOrderHandler : IRequestHandler<Command, Response>
     public async Task<Response> Handle(Command request, CancellationToken cancellationToken)
     {
         if (_currentUser.CanManageOrders() is false)
-            throw UserHasNotAccessException.AccessViolation();
+            throw AccessDeniedException.AccessViolation();
 
         var order = new Order(
             Guid.NewGuid(),

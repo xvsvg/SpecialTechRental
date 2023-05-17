@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using TechRental.Application.Abstractions.Identity;
+using TechRental.Application.Common.Exceptions;
 using TechRental.Domain.Common.Exceptions;
 
 namespace TechRental.Application.Users;

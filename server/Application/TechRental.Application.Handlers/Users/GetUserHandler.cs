@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using TechRental.Application.Common.Exceptions;
 using TechRental.DataAccess.Abstractions;
+using TechRental.Domain.Common.Exceptions;
 using TechRental.Domain.Core.Users;
 using TechRental.Infrastructure.Mapping.Users;
 using static TechRental.Application.Contracts.Users.Queries.GetUser;

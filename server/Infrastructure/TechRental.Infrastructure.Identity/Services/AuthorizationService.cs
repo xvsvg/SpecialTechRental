@@ -36,7 +36,7 @@ internal class AuthorizationService : IAuthorizationService
         if (user is not null && await _userManager.IsInRoleAsync(user, TechRentalIdentityRoleNames.AdminRoleName))
             return;
 
-        throw DataAccessException.UnauthorizedException("User is not admin");
+        throw new UnauthorizedException("User is not admin");
     }
 
     public async Task CreateRoleIfNotExistsAsync(string roleName, CancellationToken cancellationToken = default)
@@ -48,7 +48,7 @@ internal class AuthorizationService : IAuthorizationService
         Guid userId,
         string username,
         string password,
-        string rolename,
+        string roleName,
         CancellationToken cancellationToken = default)
     {
         var user = new TechRentalIdentityUser
@@ -62,7 +62,7 @@ internal class AuthorizationService : IAuthorizationService
 
         result.EnsureSucceeded();
 
-        await _userManager.AddToRoleAsync(user, rolename);
+        await _userManager.AddToRoleAsync(user, roleName.ToLower());
 
         return user.ToDto();
     }
@@ -115,7 +115,7 @@ internal class AuthorizationService : IAuthorizationService
         CancellationToken cancellationToken = default)
     {
         if (currentPassword.Equals(newPassword, StringComparison.Ordinal))
-            throw DataAccessException.IdentityOperationNotSucceededException("New password cannot be the same as old password");
+            throw UserInputException.IdentityOperationNotSucceededException("New password cannot be the same as old password");
 
         var user = await _userManager.GetByIdAsync(userId, cancellationToken);
 

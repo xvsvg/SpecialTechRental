@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using TechRental.Domain.Common.Exceptions;
+using TechRental.Domain.Core.Users;
 using TechRental.Infrastructure.Identity.Entities;
 
 namespace TechRental.Infrastructure.Identity.Extensions;
@@ -14,7 +15,7 @@ internal static class UserManagerExtensions
         var user = await userManager.FindByIdAsync(userId.ToString());
 
         if (user is null)
-            throw DataAccessException.EntityNotFoundException($"User with id {userId} was not found");
+            throw EntityNotFoundException.For<User>(userId);
 
         return user;
     }
@@ -27,7 +28,7 @@ internal static class UserManagerExtensions
         var user = await userManager.FindByNameAsync(username);
 
         if (user is null)
-            throw DataAccessException.EntityNotFoundException($"User with name {username} was not found");
+            throw EntityNotFoundException.For<User>(username);
         
         return user;
     }

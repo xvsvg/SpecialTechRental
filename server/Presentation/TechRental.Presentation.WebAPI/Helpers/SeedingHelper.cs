@@ -26,7 +26,7 @@ internal static class SeedingHelper
             }
             catch (Exception ex)
             {
-                logger.LogWarning(ex, "Failed to register admin {Username}", admin.Username);
+                logger.LogWarning(ex.Message,"Failed to register admin {Username}", admin.Username);
             }
         }
     }
@@ -42,7 +42,7 @@ internal static class SeedingHelper
         }
         catch (Exception ex)
         {
-            logger.LogWarning(ex, "Failed to seed roles");
+            logger.LogWarning(ex.Message, "Failed to seed roles");
         }
     }
 }

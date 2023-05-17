@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TechRental.Application.Common.Exceptions;
 using TechRental.DataAccess.Abstractions;
+using TechRental.Domain.Common.Exceptions;
 using TechRental.Domain.Core.Abstractions;
 using TechRental.Domain.Core.Orders;
 using TechRental.Domain.Core.Users;

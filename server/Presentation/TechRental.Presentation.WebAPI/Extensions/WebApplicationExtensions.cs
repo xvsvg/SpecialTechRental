@@ -1,4 +1,7 @@
-﻿namespace TechRental.Presentation.WebAPI.Extensions;
+﻿using Serilog;
+using TechRental.Presentation.Middlewares;
+
+namespace TechRental.Presentation.WebAPI.Extensions;
 
 internal static class WebApplicationExtensions
 {
@@ -15,7 +18,25 @@ internal static class WebApplicationExtensions
 
         app.UseCors(o => o.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
         app.MapControllers();
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
+        app.UseRequestLogging();
 
         return app;
+    }
+
+    private static void UseRequestLogging(this WebApplication app)
+    {
+        app.UseSerilogRequestLogging(o =>
+        {
+            o.IncludeQueryInRequestPath = true;
+            o.Logger = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
+                .WriteTo.File(
+                    Path.Join("Serilogs", "RequestLog_.log"),
+                    outputTemplate: "{Timestamp:o} {Message}{NewLine}",
+                    rollingInterval: RollingInterval.Day,
+                    retainedFileCountLimit: 30)
+                .CreateLogger();
+        });
     }
 }

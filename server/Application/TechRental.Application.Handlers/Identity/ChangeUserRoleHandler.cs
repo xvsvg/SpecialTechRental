@@ -23,7 +23,7 @@ internal class ChangeUserRoleHandler : IRequestHandler<Command>
         var userRoleName = await _authorizationService.GetUserRoleAsync(user.Id, cancellationToken);
 
         if (_currentUser.CanChangeUserRole(userRoleName, request.UserRole) is false)
-            throw new AccessDeniedException($"Unable to change role of {request.Username}");
+            throw AccessDeniedException.NotInRoleException();
 
         await _authorizationService.UpdateUserRoleAsync(user.Id, request.UserRole, cancellationToken);
     }

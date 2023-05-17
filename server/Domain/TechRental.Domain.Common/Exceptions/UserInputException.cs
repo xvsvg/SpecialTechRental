@@ -15,4 +15,10 @@ public class UserInputException : DomainException
 
     public static UserInputException NegativeUserBalanceException(string message)
         => new UserInputException(message);
+
+    public static UserInputException UpdateUsernameFailedException(string message)
+        => new UserInputException(message);
+
+    public static UserInputException IdentityOperationNotSucceededException(string message)
+        => new UserInputException(message);
 }

@@ -25,6 +25,7 @@
 	  <ProjectReference Include="..\..\Infrastructure\TechRental.Infrastructure.DataAccess\TechRental.Infrastructure.DataAccess.csproj" />
 	  <ProjectReference Include="..\..\Infrastructure\TechRental.Infrastructure.Identity\TechRental.Infrastructure.Identity.csproj" />
 	  <ProjectReference Include="..\TechRental.Presentation.Controllers\TechRental.Presentation.Controllers.csproj" />
+	  <ProjectReference Include="..\TechRental.Presentation.Middlewares\TechRental.Presentation.Middlewares.csproj" />
 	</ItemGroup>
 
 </Project>

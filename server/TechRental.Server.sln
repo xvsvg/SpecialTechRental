@@ -39,9 +39,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechRental.Presentation.Con
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechRental.Presentation.Contracts", "Presentation\TechRental.Presentation.Contracts\TechRental.Presentation.Contracts.csproj", "{2C45837B-C24E-4B44-80CD-8D6796E8C29E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechRental.Presentation.Services", "Presentation\TechRental.Presentation.Services\TechRental.Presentation.Services.csproj", "{021390D4-DB59-461A-BB60-89466EFD714D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechRental.Application", "Application\TechRental.Application\TechRental.Application.csproj", "{FC20BE7D-3798-49A8-89A5-0F51FBC1D896}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechRental.Application", "Application\TechRental.Application\TechRental.Application.csproj", "{FC20BE7D-3798-49A8-89A5-0F51FBC1D896}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechRental.Presentation.Middlewares", "Presentation\TechRental.Presentation.Middlewares\TechRental.Presentation.Middlewares.csproj", "{F09EE214-573F-4927-BC36-D9D39C86F25D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,14 +105,14 @@ Global
 		{2C45837B-C24E-4B44-80CD-8D6796E8C29E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C45837B-C24E-4B44-80CD-8D6796E8C29E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C45837B-C24E-4B44-80CD-8D6796E8C29E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{021390D4-DB59-461A-BB60-89466EFD714D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{021390D4-DB59-461A-BB60-89466EFD714D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{021390D4-DB59-461A-BB60-89466EFD714D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{021390D4-DB59-461A-BB60-89466EFD714D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FC20BE7D-3798-49A8-89A5-0F51FBC1D896}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FC20BE7D-3798-49A8-89A5-0F51FBC1D896}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC20BE7D-3798-49A8-89A5-0F51FBC1D896}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC20BE7D-3798-49A8-89A5-0F51FBC1D896}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F09EE214-573F-4927-BC36-D9D39C86F25D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F09EE214-573F-4927-BC36-D9D39C86F25D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F09EE214-573F-4927-BC36-D9D39C86F25D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F09EE214-573F-4927-BC36-D9D39C86F25D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -132,8 +132,8 @@ Global
 		{E3113FA0-EADA-4BE0-AE36-6CB9170A948C} = {ABE5E09D-184C-4D6E-BF23-D9522933427E}
 		{F20A6691-96B7-49DB-B9F3-CB1BBF0DF637} = {ABE5E09D-184C-4D6E-BF23-D9522933427E}
 		{2C45837B-C24E-4B44-80CD-8D6796E8C29E} = {ABE5E09D-184C-4D6E-BF23-D9522933427E}
-		{021390D4-DB59-461A-BB60-89466EFD714D} = {ABE5E09D-184C-4D6E-BF23-D9522933427E}
 		{FC20BE7D-3798-49A8-89A5-0F51FBC1D896} = {90F7822E-D4F1-4587-946B-D6AC955937D2}
+		{F09EE214-573F-4927-BC36-D9D39C86F25D} = {ABE5E09D-184C-4D6E-BF23-D9522933427E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32C9BAC2-621B-48B2-8696-3F9197638C22}
