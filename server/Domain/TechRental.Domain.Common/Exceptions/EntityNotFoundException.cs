@@ -1,6 +1,5 @@
 ﻿namespace TechRental.Domain.Common.Exceptions;
 
-//404
 public class EntityNotFoundException : DomainException
 {
     public EntityNotFoundException(string message) : base(message) { }

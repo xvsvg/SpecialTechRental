@@ -1,6 +1,5 @@
 ﻿namespace TechRental.Domain.Common.Exceptions;
 
-//400
 public class UserInputException : DomainException
 {
     private UserInputException() : base() { }

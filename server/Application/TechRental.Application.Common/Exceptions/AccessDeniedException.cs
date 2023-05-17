@@ -1,6 +1,5 @@
 ﻿namespace TechRental.Application.Common.Exceptions;
 
-//403
 public class AccessDeniedException : ApplicationException
 {
     public AccessDeniedException() : base("Access denied") { }
