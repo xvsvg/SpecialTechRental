@@ -30,7 +30,7 @@ public class IdentityController : ControllerBase
         var query = new Login.Query(request.Username, request.Password);
         Login.Response response = await _mediator.Send(query, HttpContext.RequestAborted);
 
-        var loginResponse = new LoginResponse(response.Token);
+        var loginResponse = new LoginResponse(response.UserId, response.Token);
         return Ok(loginResponse);
     }
 

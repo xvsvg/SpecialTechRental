@@ -21,7 +21,7 @@ internal class CreateUserHandler : IRequestHandler<Command, Response>
     public async Task<Response> Handle(Command request, CancellationToken cancellationToken)
     {
         var user = new User(
-            Guid.NewGuid(),
+            request.IdentityId,
             request.Firstname,
             request.Middlename,
             request.Lastname,

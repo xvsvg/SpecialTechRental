@@ -19,7 +19,7 @@ internal class GetOrderHandler : IRequestHandler<Query, Response>
 
     public async Task<Response> Handle(Query request, CancellationToken cancellationToken)
     {
-        var order = await _context.Orders.FirstOrDefaultAsync(x => x.Id.Equals(request.OrderId), cancellationToken);
+        var order = await _context.Orders.FindAsync(request.OrderId, cancellationToken);
 
         if (order is null)
             throw EntityNotFoundException.For<Order>(request.OrderId);
