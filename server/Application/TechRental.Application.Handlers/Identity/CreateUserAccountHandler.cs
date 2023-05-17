@@ -24,8 +24,7 @@ internal class CreateUserAccountHandler : IRequestHandler<Command, Response>
     public async Task<Response> Handle(Command request, CancellationToken cancellationToken)
     {
         if (_currentUser.CanCreateUserWithRole(request.RoleName) is false)
-            throw new AccessDeniedException(
-                $"User {_currentUser.Id} is not allowed to create user with role {request.RoleName}");
+            throw AccessDeniedException.NotInRoleException();
 
         var response = await _authorizationService.CreateUserAsync(
                 Guid.NewGuid(),

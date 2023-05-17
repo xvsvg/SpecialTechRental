@@ -12,16 +12,16 @@ internal class AnonymousUser : ICurrentUser
     {
         return roleName.Equals(TechRentalIdentityRoleNames.DefaultUserRoleName, StringComparison.Ordinal)
                 ? true
-                : throw UserHasNotAccessException.AnonymousUserHasNotAccess();
+                : throw AccessDeniedException.AnonymousUserHasNotAccess();
     }
 
     public bool CanChangeUserRole(string currentRoleName, string newRoleName)
-        => throw UserHasNotAccessException.AnonymousUserHasNotAccess();
+        => throw AccessDeniedException.AnonymousUserHasNotAccess();
 
 
     public bool CanManageOrders()
-        => throw UserHasNotAccessException.AnonymousUserHasNotAccess();
+        => throw AccessDeniedException.AnonymousUserHasNotAccess();
 
     public bool CanManageBalance()
-        => throw UserHasNotAccessException.AnonymousUserHasNotAccess();
+        => throw AccessDeniedException.AnonymousUserHasNotAccess();
 }

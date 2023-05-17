@@ -8,7 +8,7 @@ internal static class IdentityResultExtensions
     public static void EnsureSucceeded(this IdentityResult result)
     {
         if (result.Succeeded is false)
-            throw DataAccessException.IdentityOperationNotSucceededException(
+            throw UserInputException.IdentityOperationNotSucceededException(
                 string.Join(' ',
                 result.Errors.Select(x => x.Description)));
     }

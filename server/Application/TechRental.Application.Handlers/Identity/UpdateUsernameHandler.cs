@@ -21,7 +21,7 @@ internal class UpdateUsernameHandler : IRequestHandler<Command, Response>
         var user = await _authorizationService.GetUserByIdAsync(_currentUser.Id, cancellationToken);
 
         if (user.Username.Equals(request.Username, StringComparison.Ordinal))
-            throw new UpdateUsernameFailedException("the old username is the same as the new one");
+            throw UserInputException.UpdateUsernameFailedException("the old username is the same as the new one");
 
         await _authorizationService.UpdateUserNameAsync(_currentUser.Id, request.Username, cancellationToken);
 

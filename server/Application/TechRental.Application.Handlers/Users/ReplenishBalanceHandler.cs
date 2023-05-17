@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TechRental.Application.Abstractions.Identity;
 using TechRental.Application.Common.Exceptions;
 using TechRental.DataAccess.Abstractions;
+using TechRental.Domain.Common.Exceptions;
 using TechRental.Domain.Core.Users;
 using static TechRental.Application.Contracts.Users.Commands.ReplenishBalance;
 
@@ -22,7 +23,7 @@ internal class ReplenishBalanceHandler : IRequestHandler<Command>
     public async Task Handle(Command request, CancellationToken cancellationToken)
     {
         if (_currentUser.CanManageBalance() is false)
-            throw UserHasNotAccessException.AnonymousUserHasNotAccess();
+            throw AccessDeniedException.AnonymousUserHasNotAccess();
 
         var user = await _context.Users
             .FirstOrDefaultAsync(x => x.Id.Equals(request.UserId),

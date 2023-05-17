@@ -4,6 +4,7 @@ using TechRental.Application.Abstractions.Identity;
 using TechRental.Application.Common.Exceptions;
 using TechRental.Application.Contracts.Users.Commands;
 using TechRental.DataAccess.Abstractions;
+using TechRental.Domain.Common.Exceptions;
 using TechRental.Domain.Core.Abstractions;
 using TechRental.Domain.Core.Orders;
 using TechRental.Domain.Core.Users;
