@@ -1,0 +1,25 @@
+form {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+small{
+	position: absolute;
+	top: 94%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+button.MuiButtonBase-root:hover{
+	background-color: burlywood;
+}
+
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+  border-color: burlywood !important;
+}
+
+.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root{
+	color: burlywood	!important;
+}
