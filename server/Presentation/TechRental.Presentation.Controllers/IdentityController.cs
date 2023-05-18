@@ -94,4 +94,19 @@ public class IdentityController : ControllerBase
 
         return Ok(new UpdatePasswordResponse(response.Token));
     }
+
+    /// <summary>
+    /// Checks whether user is admin
+    /// </summary>
+    /// <param name="request">user name</param>
+    /// <returns>200 if user is admin</returns>
+    [HttpPost("authorize-admin")]
+    [Authorize]
+    public async Task<IActionResult> AuthorizeAdminAsync([FromBody] AuthorizeAdminRequest request)
+    {
+        var query = new AuthorizeAdmin.Query(request.Username);
+        await _mediator.Send(query);
+
+        return Ok();
+    }
 }
