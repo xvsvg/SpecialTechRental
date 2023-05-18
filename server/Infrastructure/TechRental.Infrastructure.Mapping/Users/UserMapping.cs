@@ -24,6 +24,7 @@ public static class UserMapping
             user.Image.Value,
             user.BirthDate,
             user.PhoneNumber.Value,
+            user.Money,
             user.Orders.ToDto());
     }
 }

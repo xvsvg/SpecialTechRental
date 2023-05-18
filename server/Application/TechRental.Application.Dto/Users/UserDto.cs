@@ -10,4 +10,5 @@ public record UserDto(
     byte[] Image,
     DateTime BirthDate,
     string Number,
+    decimal Money,
     IEnumerable<UserOrderDto> Orders);
