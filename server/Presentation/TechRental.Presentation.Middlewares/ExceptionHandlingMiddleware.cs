@@ -27,6 +27,7 @@ public class ExceptionHandlingMiddleware : IMiddleware
         {
             if (_mappings.ContainsKey(ex.GetType()))
                 context.Response.StatusCode = (int)_mappings[ex.GetType()];
+            else context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
             var problem = GetProblem(context, ex);
 
