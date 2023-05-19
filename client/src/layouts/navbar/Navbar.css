@@ -13,7 +13,7 @@
 	padding: 0 30px;
 }
 
-.logo{
+.logo {
 	margin-left: 5%;
 	margin-bottom: 15px;
 	font-size: 2em;
@@ -24,8 +24,12 @@
 }
 
 button.MuiButtonBase-root,
-a.MuiButtonBase-root{
+a.MuiButtonBase-root {
 	color: #fff;
+}
+
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover {
+	background-color: burlywood !important;
 }
 
 ul {
