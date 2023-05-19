@@ -1,8 +1,12 @@
 import { RegisterForm } from "../../components";
+import { Navbar } from "../../layouts";
 
 const Register = () => {
 	return (
-		<RegisterForm />
+		<>
+			<Navbar />
+			<RegisterForm />
+		</>
 	)
 }
 
