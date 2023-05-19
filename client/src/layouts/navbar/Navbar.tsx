@@ -9,7 +9,7 @@ const Navbar = () => {
 				<h2 className="logo">Tech rental</h2>
 				<nav className="panel">
 					<ul>
-					<li>
+						<li>
 							<Button component={Link} to="/">Home</Button>
 						</li>
 						<li>
