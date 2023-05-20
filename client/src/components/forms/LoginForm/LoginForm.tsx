@@ -1,40 +1,60 @@
-import { Button, TextField } from "@mui/material"
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import "../styles.css"
+import { useState, ChangeEvent, FormEvent } from "react";
+import { Button, TextField, Typography, Box } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
+import { green } from "@mui/material/colors";
 
 const LoginForm = () => {
-	const [username, setUsername] = useState("")
-	const [password, setPassword] = useState("")
-	const navigate = useNavigate()
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const navigate = useNavigate();
 
-	const handleSubmit = (event: React.FormEvent) => {
-		event.preventDefault()
-		console.log(username, password)
-		navigate("/");
-	}
+	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		console.log(username, password);
+		navigate("/", { state: { message: "Successfully logged in!", type: "success" } })
+	};
 
-	const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setUsername(event.target.value)
-	}
+	const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
+		setUsername(event.target.value);
+	};
 
-	const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setPassword(event.target.value)
-	}
+	const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+		setPassword(event.target.value);
+	};
 
 	return (
 		<>
-			<form autoComplete="off" onSubmit={handleSubmit}>
-				<h2>Login Form</h2>
+			<Box
+				component="form"
+				autoComplete="off"
+				onSubmit={handleSubmit}
+				sx={{
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+					marginTop: "100px"
+				}}
+			>
+				<Typography variant="h4" sx={{ mb: 3, color: 'white' }}>
+					Login Form
+				</Typography>
 				<TextField
 					label="Username"
 					onChange={handleUsernameChange}
 					required
 					variant="outlined"
 					color="primary"
-					type="username"
-					sx={{ mb: 3 }}
-					fullWidth
+					type="text"
+					sx={{
+						mb: 3, backgroundColor: 'white', borderRadius: 1,
+						"& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+							borderColor: "white",
+						},
+						"& .MuiInputLabel-root.Mui-focused": {
+							color: 'white',
+							textShadow: '0 2px grey'
+						}
+					}}
 					value={username}
 				/>
 				<TextField
@@ -44,15 +64,36 @@ const LoginForm = () => {
 					variant="outlined"
 					color="primary"
 					type="password"
+					sx={{
+						mb: 3, backgroundColor: 'white', borderRadius: 1,
+						"& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+							borderColor: "white",
+						},
+						"& .MuiInputLabel-root.Mui-focused": {
+							color: 'white',
+							textShadow: '0 2px grey'
+						}
+					}}
 					value={password}
-					fullWidth
-					sx={{ mb: 3 }}
 				/>
-				<Button variant="contained" color="inherit" type="submit">Login</Button>
-				<small>Need an account? <Link to="/register">Register here</Link></small>
-			</form>
+				<Button
+					variant="contained"
+					color="primary"
+					type="submit"
+					sx={{
+						backgroundColor: 'inherit', "&:hover": {
+							backgroundColor: green[500],
+							color: "white",
+						}
+					}}>
+					Login
+				</Button>
+				<Typography variant="body2" sx={{ mt: 2, color: 'white' }}>
+					Need an account? <Link to="/register">Register here</Link>
+				</Typography>
+			</Box>
 		</>
 	);
-}
+};
 
-export default LoginForm
+export default LoginForm;
