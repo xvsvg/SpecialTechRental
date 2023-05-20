@@ -4,7 +4,16 @@ import "./Navbar.css";
 
 const Navbar = () => {
 	return (
-		<Box maxWidth='inherited' bgcolor="#071b2f" color="#fff" py={2} boxShadow={0}>
+		<Box maxWidth='inherited'
+			 bgcolor="rgba(7, 27, 47, 0.8)"
+			color="#fff"
+			top={0}
+			py={2}
+			boxShadow={0}
+			position='fixed'
+			width="100%"
+			zIndex={1}
+		>
 			<Container sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
 				<Typography variant="h3" className="logo">
 					Tech rental
