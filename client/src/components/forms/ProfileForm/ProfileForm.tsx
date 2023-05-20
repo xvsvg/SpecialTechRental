@@ -15,7 +15,7 @@ const ProfileForm = () => {
 	const balance = 9999
 	return (
 		<Box className="profile">
-			<Card sx={{ width: '500px', backgroundColor: '#0a1929' }}>
+			<Card sx={{ width: '500px', backgroundColor: '#0a1929', borderRadius: '10px' }}>
 				<Box sx={{ p: 2, display: 'flex', alignItems: 'center', backgroundColor: '#0a1929' }}>
 					<Avatar variant="rounded" src="" />
 					<Stack spacing={0.5} sx={{ flex: 1, marginLeft: '10px' }}>
@@ -32,11 +32,11 @@ const ProfileForm = () => {
 						{balance}
 					</Typography>
 					<Button sx={{
-              "&:hover": {
-                backgroundColor: green[500],
-                color: "white",
-              }
-            }}>Make deposit</Button>
+						"&:hover": {
+							backgroundColor: green[500],
+							color: "white",
+						}
+					}}>Make deposit</Button>
 				</Box>
 			</Card>
 		</Box>
