@@ -2,9 +2,11 @@ import { Box, Button, FormControl, IconButton, Input, TextField, Typography } fr
 import { useState } from "react";
 import { Add, Remove } from "@mui/icons-material";
 import { green } from "@mui/material/colors";
+import { Report } from "../../reports";
 
 const PurchaseForm = () => {
 	const [quantity, setQuantity] = useState(1);
+	const [showReport, setShowReport] = useState(false)
 
 	const handleIncreaseQuantity = () => {
 		setQuantity((prevQuantity) => prevQuantity + 1);
@@ -26,8 +28,8 @@ const PurchaseForm = () => {
 	};
 
 	const handleSubmit = (event: React.FormEvent) => {
-		event.preventDefault();
-		// Perform submission logic here
+		event.preventDefault()
+		setShowReport(true)
 	};
 
 	return (
@@ -91,6 +93,7 @@ const PurchaseForm = () => {
 					variant="contained"
 					color="primary"
 					type="submit"
+					onClick={handleSubmit}
 					sx={{
 						backgroundColor: 'inherit', "&:hover": {
 							backgroundColor: green[500],
@@ -99,6 +102,7 @@ const PurchaseForm = () => {
 					}}>
 					Submit
 				</Button>
+				{showReport && <Report />}
 			</FormControl>
 		</Box>
 	);
