@@ -24,73 +24,75 @@ const LoginForm = () => {
 
 	return (
 		<>
-			<Box
-				component="form"
-				autoComplete="off"
-				onSubmit={handleSubmit}
-				sx={{
-					display: "flex",
-					flexDirection: "column",
-					alignItems: "center",
-					marginTop: "100px"
-				}}
-			>
-				<Typography variant="h4" sx={{ mb: 3, color: 'white' }}>
-					Register Form
-				</Typography>
-				<TextField
-					label="Username"
-					onChange={handleUsernameChange}
-					required
-					variant="outlined"
-					color="primary"
-					type="text"
+			<Box sx={{ display: "flex", justifyContent: 'center' }}>
+				<Box
+					component="form"
+					autoComplete="off"
+					onSubmit={handleSubmit}
 					sx={{
-						mb: 3, backgroundColor: 'white', borderRadius: 1,
-						"& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-							borderColor: "white",
-						},
-						"& .MuiInputLabel-root.Mui-focused": {
-							color: 'white',
-							textShadow: '0 2px grey'
-						}
+						display: "flex",
+						flexDirection: "column",
+						alignItems: "center",
+						marginTop: "100px"
 					}}
-					value={username}
-				/>
-				<TextField
-					label="Password"
-					onChange={handlePasswordChange}
-					required
-					variant="outlined"
-					color="primary"
-					type="password"
-					sx={{
-						mb: 3, backgroundColor: 'white', borderRadius: 1,
-						"& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-							borderColor: "white",
-						},
-						"& .MuiInputLabel-root.Mui-focused": {
-							color: 'white',
-							textShadow: '0 2px grey'
-						}
-					}}
-					value={password}
-				/>
-				<Button
-					variant="contained"
-					color="primary"
-					type="submit"
-					sx={{
-						backgroundColor: 'inherit', "&:hover": {
-							backgroundColor: green[500],
-							color: "white",
-						}
-					}}>
-					Register
-				</Button>
-				<Typography variant="body2" sx={{ mt: 2, color: 'white' }}>
-					Already have an account? <Link to="/register">Login here</Link>
-				</Typography>
+				>
+					<Typography variant="h4" sx={{ mb: 3, color: 'white' }}>
+						Register Form
+					</Typography>
+					<TextField
+						label="Username"
+						onChange={handleUsernameChange}
+						required
+						variant="outlined"
+						color="primary"
+						type="text"
+						sx={{
+							mb: 3, backgroundColor: 'white', borderRadius: 1,
+							"& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+								borderColor: "white",
+							},
+							"& .MuiInputLabel-root.Mui-focused": {
+								color: 'white',
+								textShadow: '0 2px grey'
+							}
+						}}
+						value={username}
+					/>
+					<TextField
+						label="Password"
+						onChange={handlePasswordChange}
+						required
+						variant="outlined"
+						color="primary"
+						type="password"
+						sx={{
+							mb: 3, backgroundColor: 'white', borderRadius: 1,
+							"& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+								borderColor: "white",
+							},
+							"& .MuiInputLabel-root.Mui-focused": {
+								color: 'white',
+								textShadow: '0 2px grey'
+							}
+						}}
+						value={password}
+					/>
+					<Button
+						variant="contained"
+						color="primary"
+						type="submit"
+						sx={{
+							backgroundColor: 'inherit', "&:hover": {
+								backgroundColor: green[500],
+								color: "white",
+							}
+						}}>
+						Register
+					</Button>
+					<Typography variant="body2" sx={{ mt: 2, color: 'white' }}>
+						Already have an account? <Link to="/register">Login here</Link>
+					</Typography>
+				</Box>
 			</Box>
 		</>
 	);

@@ -9,9 +9,9 @@ interface ProductContainerProps {
 const ProductsContainer = ({ products }: ProductContainerProps) => {
 	return (
 		<Container sx={{ display: "flex", justifyContent: "center" }}>
-			<Grid container spacing={2} >
+			<Grid container spacing={2} sx={{ marginTop: "80px" }} >
 				{products.map((product, index) => (
-					<Grid key={index} item xs={2} sm={2} md={4} sx={{marginBottom: "20px"}}>
+					<Grid key={index} item xs={2} sm={2} md={4} sx={{ marginBottom: "20px" }}>
 						<Box
 							height={"100%"}
 							sx={{
