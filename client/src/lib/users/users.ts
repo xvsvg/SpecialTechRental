@@ -2,7 +2,7 @@ import { IUser, IUserPage } from "../../shared/models";
 import { CreateProfileDto } from "../../shared/dto";
 import axios from "axios";
 
-export const api = axios.create({ baseURL: process.env.REACT_APP_API_URL })
+export const api = axios.create({ baseURL: process.env.REACT_APP_USER_API })
 
 export const getUser = async (id: string) => {
 	return await api.get<IUser>(id)
