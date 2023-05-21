@@ -111,18 +111,18 @@ public class IdentityController : ControllerBase
     }
 
     /// <summary>
-    /// Gets user role. Pass identity or user id.
+    /// Provides information about identity.Pass identity or user id.
     /// </summary>
     /// <param name="userId">identity or user id</param>
-    /// <returns>User role</returns>
-    [HttpGet("{userId:guid}/role")]
+    /// <returns>Username and user role</returns>
+    [HttpGet("{userId:guid}")]
     [Authorize(Roles = TechRentalIdentityRoleNames.AdminRoleName)]
-    public async Task<ActionResult<GetRoleResponse>> GetRoleByIdAsync(Guid userId)
+    public async Task<ActionResult<GetIdentityResponse>> GetRoleByIdAsync(Guid userId)
     {
-        var query = new GetRole.Query(userId);
+        var query = new GetIdentity.Query(userId);
         var response = await _mediator.Send(query);
 
-        var getRoleResponse = new GetRoleResponse(response.Role);
+        var getRoleResponse = new GetIdentityResponse(response.Username, response.Role);
         return Ok(getRoleResponse);
     }
 }

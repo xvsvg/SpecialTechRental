@@ -2,9 +2,9 @@
 
 namespace TechRental.Application.Contracts.Identity.Queries;
 
-internal static class GetRole
+internal static class GetIdentity
 {
     public record Query(Guid Id) : IRequest<Response>;
 
-    public record Response(string Role);
+    public record Response(string Username, string Role);
 }
