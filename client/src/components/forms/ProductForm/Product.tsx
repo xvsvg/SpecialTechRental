@@ -1,5 +1,5 @@
 import { Box, Button, CardMedia, Divider, Modal, Stack, Typography } from "@mui/material"
-import { IProduct } from "../../../shared/models";
+import { IProduct } from "../../../shared/models/product";
 import { green, grey } from "@mui/material/colors";
 import { PurchaseForm } from "../PurchaseForm";
 import { useState } from "react";
