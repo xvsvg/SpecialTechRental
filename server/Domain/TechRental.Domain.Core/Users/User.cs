@@ -8,10 +8,14 @@ namespace TechRental.Domain.Core.Users;
 
 public class User
 {
-    private List<Order> _orders;
+    private readonly List<Order> _orders;
     private decimal _money;
 
-    protected User() { }
+    protected User()
+    {
+        _orders = new List<Order>();
+
+    }
 
     public User(
         Guid id,
@@ -68,9 +72,6 @@ public class User
     public Order AddOrder(Order order)
     {
         ArgumentNullException.ThrowIfNull(order);
-
-        if (_orders is null)
-            _orders = new List<Order>();
 
         _orders.Add(order);
         order.User = this;

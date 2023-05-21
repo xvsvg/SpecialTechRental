@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using TechRental.Application.Common.Exceptions;
 using TechRental.DataAccess.Abstractions;
 using TechRental.Domain.Common.Exceptions;
@@ -19,7 +20,8 @@ internal class GetUserHandler : IRequestHandler<Query, Response>
 
     public async Task<Response> Handle(Query request, CancellationToken cancellationToken)
     {
-        var user = await _context.Users.FindAsync(request.UserId, cancellationToken);
+        var user = await _context.Users.Include(x => x.Orders)
+            .FirstAsync(x => x.Id.Equals(request.UserId), cancellationToken);
 
         if (user is null)
             throw EntityNotFoundException.For<User>(request.UserId);
