@@ -2,15 +2,12 @@ import axios from "axios"
 import { LoginDto, RegisterDto } from "../../shared/dto/identity/request"
 import { IdentityResponseDto, LoginResponseDto, TokenResponseDto } from "../../shared/dto/identity"
 
-let url = process.env.API_URL
-
-if (process.env.NODE_ENV === 'development')
-	url += 'identity'
-else url += 'api/identity'
-
-export const api = axios.create({ baseURL: url })
+export const api = axios.create({ baseURL: process.env.REACT_APP_API_URL })
 
 export const login = async (dto: LoginDto) => {
+	console.log(api.getUri());
+	console.log(process.env);
+	
 	return await api.post<LoginResponseDto>('login', dto)
 }
 

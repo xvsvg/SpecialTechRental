@@ -2,13 +2,7 @@ import axios from "axios"
 import { ChangeProductStatusDto, CreateOrderDto } from "../../shared/dto"
 import { IProduct, IProductPage } from "../../shared"
 
-let url = process.env.API_URL
-
-if (process.env.NODE_ENV === 'development')
-	url += 'Order'
-else url += 'api/Order'
-
-export const api = axios.create({ baseURL: url })
+export const api = axios.create({ baseURL: process.env.REACT_APP_API_URL })
 
 export const changeProductStatus = async (token: string, dto: ChangeProductStatusDto) => {
 	return await api.put('status', dto, {
