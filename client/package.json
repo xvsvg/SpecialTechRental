@@ -15,6 +15,7 @@
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
     "axios": "^1.4.0",
+    "crossenv": "^0.0.2-security",
     "nodeenv": "^3.0.75",
     "pdf-lib": "^1.17.1",
     "react": "^18.2.0",
