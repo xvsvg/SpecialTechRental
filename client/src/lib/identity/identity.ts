@@ -1,5 +1,5 @@
 import axios from "axios"
-import { LoginDto } from "../../shared/dto/identity/request"
+import { LoginDto, RegisterDto } from "../../shared/dto/identity/request"
 import { IdentityResponseDto, LoginResponseDto, TokenResponseDto } from "../../shared/dto/identity"
 
 let url = process.env.API_URL

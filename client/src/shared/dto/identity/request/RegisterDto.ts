@@ -3,3 +3,5 @@ interface RegisterDto{
 	password: string;
 	roleName: string;
 }
+
+export default RegisterDto
