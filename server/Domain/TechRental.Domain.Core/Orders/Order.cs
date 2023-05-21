@@ -22,6 +22,7 @@ public class Order
     {
         Id = id;
         User = user;
+        UserId = user?.Id;
         Name = name;
         Image = image;
         Status = status;
@@ -31,6 +32,7 @@ public class Order
 
     public Guid Id { get; }
     public virtual User? User { get; set; }
+    public Guid? UserId { get; set; }
     public string Name { get; }
     public Image Image { get; }
     public OrderStatus Status { get; set; }
