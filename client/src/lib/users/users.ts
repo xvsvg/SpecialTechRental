@@ -44,7 +44,7 @@ export const removeProduct = async (token: string, id: string, productId: string
 }
 
 export const replenishBalance = async (token: string, id: string, total: number) => {
-	return await api.put(`${id}/account`, total, {
+	return await api.put(`${id}/account`, {total}, {
 		headers: {
 			Authorization: `Bearer ${token}`
 		}
