@@ -1,17 +1,31 @@
-import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { Button, TextField, Typography, Box } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { green } from "@mui/material/colors";
+import { register } from "../../../lib/identity/identity";
+import { Notification } from "../../../features";
+import { setCookie } from "typescript-cookie";
+
 
 const LoginForm = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [error, setError] = useState<string | null>(null)
 	const navigate = useNavigate();
 
-	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		console.log(username, password);
-		navigate("/login", { state: { message: "Successfully registered!", type: "success" } })
+
+		try {
+			setError(null)
+			const { data } = await register({ username, password, roleName: 'user' })
+			
+			setCookie('jwt-authorization', data.token);
+			navigate("/login", { state: { message: "Successfully registered!", type: "success" } })
+		} catch (error: any) {
+			setError(error.response.data.Detailes);
+		}
+
 	};
 
 	const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -24,6 +38,7 @@ const LoginForm = () => {
 
 	return (
 		<>
+			{error && <Notification message={error} type='error' />}
 			<Box sx={{ display: "flex", justifyContent: 'center' }}>
 				<Box
 					component="form"
@@ -90,7 +105,7 @@ const LoginForm = () => {
 						Register
 					</Button>
 					<Typography variant="body2" sx={{ mt: 2, color: 'white' }}>
-						Already have an account? <Link to="/register">Login here</Link>
+						Already have an account? <Link to="/login">Login here</Link>
 					</Typography>
 				</Box>
 			</Box>

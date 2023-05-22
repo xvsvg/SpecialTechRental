@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import { Button, TextField, Typography, Box, Container } from "@mui/material";
+import { Button, TextField, Typography, Box } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { green } from "@mui/material/colors";
 import { login } from "../../../lib/identity/identity";
@@ -24,7 +24,7 @@ const LoginForm = () => {
 
 			navigate("/", { state: { message: "Successfully logged in!", type: "success" } })
 		} catch (error: any) {
-			setError(error.message)
+			setError(error.response.data.Detailes)
 		}
 	};
 
