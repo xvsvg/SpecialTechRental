@@ -2,16 +2,30 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import { Button, TextField, Typography, Box, Container } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { green } from "@mui/material/colors";
+import { login } from "../../../lib/identity/identity";
+import { Notification } from "../../../features";
+import { setCookie } from "typescript-cookie";
 
 const LoginForm = () => {
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
+	const [username, setUsername] = useState("")
+	const [password, setPassword] = useState("")
+	const [error, setError] = useState<string | null>(null)
 	const navigate = useNavigate();
 
-	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		console.log(username, password);
-		navigate("/", { state: { message: "Successfully logged in!", type: "success" } })
+
+		try {
+			setError(null)
+
+			const { data } = await login({ username, password })
+			setCookie('jwt-authorization', data.token)
+			setCookie('current-user', data.userId)
+
+			navigate("/", { state: { message: "Successfully logged in!", type: "success" } })
+		} catch (error: any) {
+			setError(error.message)
+		}
 	};
 
 	const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -24,6 +38,7 @@ const LoginForm = () => {
 
 	return (
 		<>
+			{error && <Notification message={error} type='error' />}
 			<Box sx={{ display: "flex", justifyContent: 'center' }}>
 				<Box
 					component="form"
