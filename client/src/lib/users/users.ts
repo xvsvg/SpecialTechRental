@@ -4,8 +4,10 @@ import axios from "axios";
 
 export const api = axios.create({ baseURL: process.env.REACT_APP_USER_API })
 
-export const getUser = async (id: string) => {
-	return await api.get<IUser>(id)
+export const getUser = async (id: string, token: string) => {
+	return await api.get<IUser>(id, {headers: {
+		Authorization: `Bearer ${token}`
+	}})
 }
 
 export const getAllUsers = async (token: string, page?: number) => {
