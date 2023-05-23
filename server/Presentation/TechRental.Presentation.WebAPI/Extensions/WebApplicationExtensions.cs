@@ -16,7 +16,7 @@ internal static class WebApplicationExtensions
             .UseAuthentication()
             .UseAuthorization();
 
-        app.UseCors(o => o.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+        app.UseCors(o => o.AllowAnyOrigin().AllowAnyMethod().AllowAnyMethod());
         app.MapControllers();
         app.UseMiddleware<ExceptionHandlingMiddleware>();
         app.UseRequestLogging();
