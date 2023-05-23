@@ -23,7 +23,7 @@ const Profile = () => {
 	const location = useLocation()
 	const message = location.state && location.state.message
 	const type = location.state && location.state.type
-	
+
 	const fetchData = async () => {
 		try {
 			setError(null)
@@ -35,27 +35,28 @@ const Profile = () => {
 	}
 
 	const fetchUser = async () => {
-		return await getUser(getCookie("current-user") ?? '')
+		return await getUser(getCookie("current-user") ?? '', getCookie("jwt-authorization") ?? "")
 	}
 
 	useEffect(() => {
 		(async () => await fetchData())()
-	}, [user])
-
+	}, [])
+	
 	return (
-		<Box bgcolor="#132f4b" minHeight="100vh">
+		<Box bgcolor="#132f4b" display={"flex"} alignItems={"center"} height={"100vh"} width={"100vw"}>
 			{error && <Notification message={error} type='warning' />}
 			{message && <Notification message={message} type='warning' />}
-			<Navbar />
-			<ProfileForm
-				firstName={user.firstName}
-				middleName={user.middleName}
-				lastName={user.lastName}
-				birthDate={user.birthDate}
-				image={user.image}
-				phoneNumber={user.number}
-				total={user.money} />
-			<ItemTable items={items} setItems={setItems} />
+			<Box display={"flex"} justifyContent={"space-evenly"} width={"100%"}>
+				<ProfileForm
+					firstName={user.firstName}
+					middleName={user.middleName}
+					lastName={user.lastName}
+					birthDate={user.birthDate}
+					image={user.image}
+					phoneNumber={user.number}
+					total={user.money} />
+				<ItemTable items={items} setItems={setItems} />
+			</Box>
 		</Box>
 	)
 }

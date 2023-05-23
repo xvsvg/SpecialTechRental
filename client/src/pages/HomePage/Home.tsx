@@ -11,7 +11,6 @@ const HomePage = () => {
 	return (
 		<Box bgcolor="#001e3c" minHeight='100vh' >
 			{message && <Notification message={message} type={type} />}
-			<Header />
 			<Pagination apiUrl={"https://jsonplaceholder.typicode.com/photos"} />
 		</Box>
 	)
