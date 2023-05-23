@@ -1,44 +1,256 @@
-import { Avatar, Box, Button, Card, Divider, IconButton, Modal, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Button, Card, Divider, IconButton, Modal, Stack, TextField, Typography } from "@mui/material";
 import { green, grey } from "@mui/material/colors";
 import { ReplenishForm } from "../ReplenishForm";
 import EditIcon from "@mui/icons-material/Edit";
-import { useState } from "react";
+import SaveIcon from "@mui/icons-material/Save";
+import { useEffect, useState } from "react";
+import { createUserProfile, getUser } from "../../../lib/users/users";
+import { getCookie } from "typescript-cookie";
+import { useNavigate } from "react-router-dom";
+import { IUser } from "../../../shared";
 
 export interface IProfileProps {
-	firstName: string,
-	middleName: string,
-	lastName: string,
-	birthDate: string,
-	total: number,
-	image: string,
-	phoneNumber: string,
+	setError: (error: string | null) => void
 }
 
-const ProfileForm = ({ firstName, middleName, lastName, birthDate, total, image, phoneNumber }: IProfileProps) => {
+const ProfileForm = ({ setError }: IProfileProps) => {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isEditing, setIsEditing] = useState(false);
+	const [editedFirstName, setEditedFirstName] = useState('');
+	const [editedMiddleName, setEditedMiddleName] = useState('');
+	const [editedLastName, setEditedLastName] = useState('');
+	const [editedBirthDate, setEditedBirthDate] = useState('');
+	const [editedPhoneNumber, setEditedPhoneNumber] = useState('');
+	const [user, setUser] = useState<IUser>({ id: '', firstName: 'first name', middleName: 'middle name', lastName: 'last name', birthDate: '00-00-0000', number: 'phone number', image: '', money: 0, orders: [] })
+	const navigate = useNavigate()
 
-	const [isModalOpen, setIsModalOpen] = useState(false)
+	useEffect(() => {
+		setEditedFirstName(user.firstName);
+		setEditedMiddleName(user.middleName);
+		setEditedLastName(user.lastName);
+		setEditedBirthDate(user.birthDate);
+		setEditedPhoneNumber(user.number);
+	}, [user])
+
+	const fetchData = async () => {
+		try {
+			setError(null)
+			const { data } = await fetchUser()
+			setUser(data)
+		} catch (error: any) {
+			setError("You are not authorized")
+		}
+	}
+
+	const fetchUser = async () => {
+		return await getUser(getCookie("current-user") ?? '', getCookie("jwt-authorization") ?? "")
+	}
+
+	useEffect(() => {
+		(async () => await fetchData())()
+	}, [])
 
 	const handleOpen = () => {
-		setIsModalOpen(true)
+		setIsModalOpen(true);
 	}
 
 	const handleClose = () => {
-		setIsModalOpen(false)
+		setIsModalOpen(false);
+	}
+
+	const handleEditClick = () => {
+		setIsEditing(true);
+	}
+
+	const handleSaveClick = async () => {
+		setIsEditing(false);
+
+		try {
+			console.log('gere')
+			const { data } = await createUserProfile(
+				getCookie('jwt-authorization') ?? '',
+				getCookie('current-user') ?? '', {
+				firstName: editedFirstName,
+				middleName: editedMiddleName,
+				lastName: editedLastName,
+				phoneNumber: editedPhoneNumber,
+				userImage: user.image,
+				birthDate: new Date(editedBirthDate).toISOString()
+			})
+
+			navigate('/profile', { state: { message: 'Successfully edited profile!', type: "success" } })
+		} catch (error: any) {
+			navigate('/profile', { state: { message: `${error?.response?.data?.Detailes}`, type: "error" } })
+		}
 	}
 
 	return (
 		<Box className="profile">
-
 			<Card sx={{ width: '500px', backgroundColor: '#0a1929', borderRadius: '10px' }}>
-					<IconButton onClick={() => console.log("xui")
-					}>
-						<EditIcon sx={{ color: "#0a1929" }} />
-					</IconButton>
+				<IconButton onClick={isEditing ? handleSaveClick : handleEditClick} sx={{ display: 'flex', marginLeft: '450px' }}>
+					{isEditing ? <SaveIcon sx={{ color: "white" }} /> : <EditIcon sx={{ color: "white" }} />}
+				</IconButton>
 				<Box sx={{ p: 2, display: 'flex', alignItems: 'center', backgroundColor: '#0a1929' }}>
-					<Avatar variant="rounded" src="image" />
+					<Avatar variant="rounded" src={user.image} />
 					<Stack spacing={0.5} sx={{ flex: 1, marginLeft: '10px' }}>
-						<Typography variant="h6" sx={{ color: 'white' }}>{firstName} {middleName} {lastName}</Typography>
-						<Typography variant="body2" sx={{ color: grey[500] }}>{birthDate}</Typography>
+						{isEditing ? (
+							<>
+								<TextField
+									variant='standard'
+									value={editedFirstName}
+									onChange={(e) => setEditedFirstName(e.target.value)}
+									fullWidth
+									InputProps={{
+										style: {
+											color: "white",
+										},
+									}}
+									sx={{
+										textAlign: "center",
+										"& .MuiInputBase-root": {
+											color: "white",
+											"&:before": {
+												borderBottomColor: "white",
+											},
+											"&:hover:before": {
+												borderBottomColor: "white",
+											},
+											"&.Mui-focused:before": {
+												borderBottomColor: "green",
+											},
+											"&.Mui-focused:after": {
+												borderBottomColor: "green",
+											},
+										},
+									}}
+								/>
+								<TextField
+									variant='standard'
+									value={editedMiddleName}
+									onChange={(e) => setEditedMiddleName(e.target.value)}
+									fullWidth
+									InputProps={{
+										style: {
+											color: "white",
+										},
+									}}
+									sx={{
+										textAlign: "center",
+										"& .MuiInputBase-root": {
+											color: "white",
+											"&:before": {
+												borderBottomColor: "white",
+											},
+											"&:hover:before": {
+												borderBottomColor: "white",
+											},
+											"&.Mui-focused:before": {
+												borderBottomColor: "green",
+											},
+											"&.Mui-focused:after": {
+												borderBottomColor: "green",
+											},
+										},
+									}}
+								/>
+								<TextField
+									variant='standard'
+									value={editedLastName}
+									onChange={(e) => setEditedLastName(e.target.value)}
+									fullWidth
+									InputProps={{
+										style: {
+											color: "white",
+										},
+									}}
+									sx={{
+										textAlign: "center",
+										"& .MuiInputBase-root": {
+											color: "white",
+											"&:before": {
+												borderBottomColor: "white",
+											},
+											"&:hover:before": {
+												borderBottomColor: "white",
+											},
+											"&.Mui-focused:before": {
+												borderBottomColor: "green",
+											},
+											"&.Mui-focused:after": {
+												borderBottomColor: "green",
+											},
+										},
+									}}
+								/>
+								<TextField
+									type="date"
+									variant='standard'
+									value={editedBirthDate}
+									onChange={(e) => {
+										setEditedBirthDate(e.target.value);
+									}}
+									fullWidth
+									InputProps={{
+										style: {
+											color: "white",
+										},
+									}}
+									sx={{
+										textAlign: "center",
+										"& .MuiInputBase-root": {
+											color: "white",
+											"&:before": {
+												borderBottomColor: "white",
+											},
+											"&:hover:before": {
+												borderBottomColor: "white",
+											},
+											"&.Mui-focused:before": {
+												borderBottomColor: "green",
+											},
+											"&.Mui-focused:after": {
+												borderBottomColor: "green",
+											},
+										},
+									}}
+								/>
+								<TextField
+									variant='standard'
+									value={editedPhoneNumber}
+									onChange={(e) => setEditedPhoneNumber(e.target.value)}
+									fullWidth
+									InputProps={{
+										style: {
+											color: "white",
+										},
+									}}
+									sx={{
+										textAlign: "center",
+										"& .MuiInputBase-root": {
+											color: "white",
+											"&:before": {
+												borderBottomColor: "white",
+											},
+											"&:hover:before": {
+												borderBottomColor: "white",
+											},
+											"&.Mui-focused:before": {
+												borderBottomColor: "green",
+											},
+											"&.Mui-focused:after": {
+												borderBottomColor: "green",
+											},
+										},
+									}}
+								/>
+							</>
+						) : (
+							<>
+								<Typography variant="h6" sx={{ color: 'white' }}>{editedFirstName} {editedMiddleName} {editedLastName}</Typography>
+								<Typography variant="body2" sx={{ color: grey[500] }}>{editedBirthDate}</Typography>
+								<Typography variant="body2" sx={{ color: grey[500] }}>{editedPhoneNumber}</Typography>
+							</>
+						)}
 					</Stack>
 				</Box>
 				<Divider />
@@ -47,7 +259,7 @@ const ProfileForm = ({ firstName, middleName, lastName, birthDate, total, image,
 						<Box component="span" fontWeight="fontWeightBold" marginRight="8px">
 							balance:
 						</Box>
-						{total}
+						{user.money}
 					</Typography>
 					<Button
 						onClick={handleOpen}
@@ -66,4 +278,4 @@ const ProfileForm = ({ firstName, middleName, lastName, birthDate, total, image,
 	);
 }
 
-export default ProfileForm
+export default ProfileForm;
