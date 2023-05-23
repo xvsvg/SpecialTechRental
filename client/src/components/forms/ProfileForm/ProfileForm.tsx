@@ -1,7 +1,7 @@
 import { Avatar, Box, Button, Card, Divider, IconButton, Modal, Stack, Typography } from "@mui/material";
-import "./ProfileForm.css"
 import { green, grey } from "@mui/material/colors";
 import { ReplenishForm } from "../ReplenishForm";
+import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
 
 export interface IProfileProps {
@@ -28,7 +28,12 @@ const ProfileForm = ({ firstName, middleName, lastName, birthDate, total, image,
 
 	return (
 		<Box className="profile">
+
 			<Card sx={{ width: '500px', backgroundColor: '#0a1929', borderRadius: '10px' }}>
+					<IconButton onClick={() => console.log("xui")
+					}>
+						<EditIcon sx={{ color: "#0a1929" }} />
+					</IconButton>
 				<Box sx={{ p: 2, display: 'flex', alignItems: 'center', backgroundColor: '#0a1929' }}>
 					<Avatar variant="rounded" src="image" />
 					<Stack spacing={0.5} sx={{ flex: 1, marginLeft: '10px' }}>
