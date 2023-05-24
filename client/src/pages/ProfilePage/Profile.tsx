@@ -52,7 +52,7 @@ const Profile = () => {
 			{message && <Notification message={message} type={type} />}
 			<Box display={"flex"} justifyContent={"space-evenly"} width={"100%"}>
 				<ProfileForm setError={setError} />
-				{isAdmin && <ItemTable products={products ?? { orders: [], page: 0, totalPage: 0 }} />}
+				<ItemTable products={products ?? { orders: [], page: 0, totalPage: 0 }} />
 				{isAdmin && <CreateProductForm />}
 			</Box>
 		</Box>
