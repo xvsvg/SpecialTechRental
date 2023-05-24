@@ -66,7 +66,6 @@ const ProfileForm = ({ setError }: IProfileProps) => {
 		setIsEditing(false);
 
 		try {
-			console.log('gere')
 			const { data } = await createUserProfile(
 				getCookie('jwt-authorization') ?? '',
 				getCookie('current-user') ?? '', {
