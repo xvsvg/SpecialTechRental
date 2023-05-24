@@ -13,15 +13,15 @@ export const changeProductStatus = async (token: string, dto: ChangeProductStatu
 }
 
 export const createProduct = async (token: string, dto: CreateOrderDto) => {
-	return await api.post<IProduct>('', dto, {
+	return await api.post<IProduct>('/', dto, {
 		headers: {
 			Authorization: `Bearer ${token}`
 		}
 	})
 }
 
-export const getAllProduct = async (page?: number) => {
-	return await api.get<IProductPage>(`${page}`)
+export const getAllProducts = async (page?: number) => {
+	return await api.get<IProductPage>(`${page ?? '/'}`)
 }
 
 export const getProduct = async (token: string, id: string) => {

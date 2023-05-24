@@ -5,8 +5,6 @@ import { IdentityResponseDto, LoginResponseDto, TokenResponseDto } from "../../s
 export const api = axios.create({ baseURL: process.env.REACT_APP_IDENTITY_API })
 
 export const login = async (dto: LoginDto) => {
-	console.log(api.getUri());
-
 	return await api.post<LoginResponseDto>('login', dto)
 }
 
