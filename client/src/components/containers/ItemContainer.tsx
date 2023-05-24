@@ -1,9 +1,9 @@
 import { Box, Button, Container, Divider, Grid, Typography } from "@mui/material";
 import { Product } from "../forms";
-import { IProductTest } from "../pagination/Pagination";
+import { IProduct } from "../forms/ProductForm/Product";
 
 interface ProductContainerProps {
-	products: IProductTest[]
+	products: IProduct[]
 }
 
 const ProductsContainer = ({ products }: ProductContainerProps) => {
@@ -24,10 +24,10 @@ const ProductsContainer = ({ products }: ProductContainerProps) => {
 								boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
 							}}>
 							<Product
-								image={product.thumbnailUrl}
-								name={product.title}
-								total={0}
-								status="available"
+								image={product.image}
+								name={product.name}
+								total={product.total}
+								status={product.status}
 							/>
 						</Box>
 					</Grid>

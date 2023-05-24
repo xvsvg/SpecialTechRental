@@ -1,28 +1,22 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { Product } from "../forms"
 import ProductsContainer from "../containers/ItemContainer"
-
-export interface IProductTest {
-	id: number,
-	title: string,
-	thumbnailUrl: string
-}
+import { IProduct } from "../forms/ProductForm/Product"
 
 export interface IPaginationProps {
 	apiUrl: string
 }
 
 const Pagination = ({ apiUrl }: IPaginationProps) => {
-	const [products, setProducts] = useState<IProductTest[]>([])
+	const [products, setProducts] = useState<IProduct[]>([])
 	const [currentPage, setCurrentPage] = useState(1)
 	const [fetching, setFetching] = useState(true)
 
 	useEffect(() => {
 		if (fetching) {
-			axios.get(`${apiUrl}?_limit=10&_page=${currentPage}`)
+			axios.get(`${apiUrl}?page=${currentPage}`)
 				.then(response => {
-					setProducts([...products, ...response.data])
+					setProducts([...products, ...response.data.orders])
 					setCurrentPage(prev => prev + 1)
 				})
 				.finally(() => setFetching(false))
