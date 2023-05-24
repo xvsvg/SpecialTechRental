@@ -47,7 +47,7 @@ public class OrderController : ControllerBase
     {
         var command = new CreateOrder.Command(
             request.Name,
-            Convert.FromBase64String(request.OrderImage ?? string.Empty),
+            request.OrderImage ?? string.Empty,
             request.Status,
             request.Total);
         var response = await _mediator.Send(command);
