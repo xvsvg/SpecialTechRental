@@ -90,7 +90,9 @@ const ProfileForm = ({ setError }: IProfileProps) => {
 					{isEditing ? <SaveIcon sx={{ color: "white" }} /> : <EditIcon sx={{ color: "white" }} />}
 				</IconButton>
 				<Box sx={{ p: 2, display: 'flex', alignItems: 'center', backgroundColor: '#0a1929' }}>
-					<Avatar variant="rounded" src={user.image} />
+					<IconButton>
+						<Avatar variant="rounded" src={user.image} />
+					</IconButton>
 					<Stack spacing={0.5} sx={{ flex: 1, marginLeft: '10px' }}>
 						{isEditing ? (
 							<>

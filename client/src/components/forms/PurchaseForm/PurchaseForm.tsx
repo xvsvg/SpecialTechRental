@@ -4,7 +4,12 @@ import { Add, Remove } from "@mui/icons-material";
 import { green } from "@mui/material/colors";
 import { Report } from "../../reports";
 
-const PurchaseForm = () => {
+interface PurchaseProps{
+	total: number
+	onSubmit: () => void
+}
+
+const PurchaseForm = ({total, onSubmit} : PurchaseProps) => {
 	const [quantity, setQuantity] = useState(1);
 	const [showReport, setShowReport] = useState(false)
 
@@ -29,6 +34,7 @@ const PurchaseForm = () => {
 
 	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault()
+		onSubmit()
 		setShowReport(true)
 	};
 
@@ -88,7 +94,7 @@ const PurchaseForm = () => {
 						<Add />
 					</IconButton>
 				</Box>
-				<Typography color='white'>Total price: {calculateCost(10, quantity)}</Typography>
+				<Typography color='white'>Total price: {calculateCost(total, quantity)}</Typography>
 				<Button
 					variant="contained"
 					color="primary"
