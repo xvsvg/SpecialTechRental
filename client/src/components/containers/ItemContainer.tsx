@@ -16,7 +16,7 @@ const ProductsContainer = ({ products }: ProductContainerProps) => {
 							height={"100%"}
 							sx={{
 								display: "flex",
-								flexDirection: "column",
+								flexDirection: "column", 	
 								justifyContent: "space-between",
 								backgroundColor: "#0a1929",
 								padding: "10px",

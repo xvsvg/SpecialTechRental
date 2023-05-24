@@ -20,7 +20,7 @@ const Profile = () => {
 	useEffect(() => {
 		getUser();
 		fetchItems();
-	}, []); // Пустой массив зависимостей, чтобы эффекты выполнялись только при монтировании компонента
+	}, []);
 
 	const getUser = async () => {
 		try {
@@ -31,19 +31,19 @@ const Profile = () => {
 			if (data.role === "admin") {
 				setIsAdmin(true);
 			}
-		}catch(error){
+		} catch (error) {
 		}
 	};
 
 	const fetchItems = () => {
-			(async () => {
-				try {
-					const response = await getAllProducts();
-					setProducts(response.data);
-				} catch (error) {
-					setProducts(null)
-				}
-			})();
+		(async () => {
+			try {
+				const response = await getAllProducts();
+				setProducts(response.data);
+			} catch (error) {
+				setProducts(null)
+			}
+		})();
 	};
 
 	return (
@@ -52,7 +52,7 @@ const Profile = () => {
 			{message && <Notification message={message} type={type} />}
 			<Box display={"flex"} justifyContent={"space-evenly"} width={"100%"}>
 				<ProfileForm setError={setError} />
-				<ItemTable products={products ?? { orders: [], page: 0, totalPage: 0 }} />
+				{isAdmin && <ItemTable products={products ?? { orders: [], page: 0, totalPage: 0 }} />}
 				{isAdmin && <CreateProductForm />}
 			</Box>
 		</Box>
