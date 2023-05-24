@@ -1,37 +1,27 @@
+import React, { useEffect, useState } from 'react';
 import { Box, Table, TableBody, TableCell, TableHead, TableRow, TextField, TablePagination, Checkbox, IconButton } from "@mui/material";
-import React, { useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import CheckIcon from "@mui/icons-material/Check";
+import { IProduct } from '../../shared';
 
-export interface Item {
-	id: number;
-	name: string;
-	quantity: number;
+
+interface IProductPage {
+	orders: IProduct[];
+	page: number;
+	totalPage: number;
 }
 
 interface ItemTableProps {
-	items: Item[];
-	setItems: React.Dispatch<React.SetStateAction<Item[]>>;
+	products?: IProductPage;
 }
 
-const ItemTable: React.FC<ItemTableProps> = ({ items, setItems }) => {
+const ItemTable: React.FC<ItemTableProps> = ({ products }) => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [page, setPage] = useState(0);
-	const [rowsPerPage, setRowsPerPage] = useState(5);
-	const [selectedItemIds, setSelectedItemIds] = useState<number[]>([]);
+	const [rowsPerPage, setRowsPerPage] = useState(20);
+	const [selectedItemIds, setSelectedItemIds] = useState<string[]>([]);
 	const [isEditing, setIsEditing] = useState(false);
-	const [editedItem, setEditedItem] = useState<Item | null>(null);
-
-	const handleQuantityChange = (id: number, quantity: number) => {
-		const updatedItems = items.map((item) => (item.id === id ? { ...item, quantity } : item));
-		setEditedItem((prevItem) => {
-			if (prevItem && prevItem.id === id) {
-				return { ...prevItem, quantity };
-			}
-			return prevItem;
-		});
-		setItems(updatedItems);
-	};
+	const [editedItem, setEditedItem] = useState<IProduct | null>(null);
 
 	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(event.target.value);
@@ -47,7 +37,7 @@ const ItemTable: React.FC<ItemTableProps> = ({ items, setItems }) => {
 		setPage(0);
 	};
 
-	const handleRowClick = (id: number) => {
+	const handleRowClick = (id: string) => {
 		if (isEditing) return;
 
 		const isSelected = selectedItemIds.includes(id);
@@ -61,34 +51,22 @@ const ItemTable: React.FC<ItemTableProps> = ({ items, setItems }) => {
 	const handleEditClick = () => {
 		if (selectedItemIds.length === 1) {
 			setIsEditing(true);
-			setEditedItem(items.find((item) => item.id === selectedItemIds[0]) || null);
+			setEditedItem(products?.orders.find((item) => item.id === selectedItemIds[0]) || null);
 		}
 	};
 
 	const handleSaveClick = () => {
 		if (editedItem) {
-			const updatedItems = items.map((item) => {
-				if (selectedItemIds.includes(item.id)) {
-					return editedItem;
-				}
-				return item;
-			});
-			setItems(updatedItems);
+			// Handle save logic here
 			setIsEditing(false);
 			setEditedItem(null);
 			setSelectedItemIds([]);
 		}
 	};
 
-	const handleQuantityFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		if (editedItem) {
-			setEditedItem({ ...editedItem, quantity: parseInt(event.target.value) });
-		}
-	};
-
-	const filteredItems = items.filter((item) =>
+	const filteredItems = products?.orders.filter((item) =>
 		item.name.toLowerCase().includes(searchTerm.toLowerCase())
-	);
+	) || [];
 
 	const paginatedItems = filteredItems.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
@@ -126,7 +104,9 @@ const ItemTable: React.FC<ItemTableProps> = ({ items, setItems }) => {
 							<TableCell></TableCell>
 							<TableCell>ID</TableCell>
 							<TableCell>Name</TableCell>
-							<TableCell>Quantity</TableCell>
+							<TableCell>Price</TableCell>
+							<TableCell>Status</TableCell>
+							{/* Add more table headers here */}
 						</TableRow>
 					</TableHead>
 					<TableBody>
@@ -145,17 +125,9 @@ const ItemTable: React.FC<ItemTableProps> = ({ items, setItems }) => {
 								</TableCell>
 								<TableCell>{item.id}</TableCell>
 								<TableCell>{item.name}</TableCell>
-								<TableCell>
-									{isEditing && editedItem && selectedItemIds.includes(item.id) ? (
-										<TextField
-											type="number"
-											value={editedItem.quantity}
-											onChange={handleQuantityFieldChange}
-										/>
-									) : (
-										<TextField type="number" value={item.quantity} disabled />
-									)}
-								</TableCell>
+								<TableCell>{item.total}</TableCell>
+								<TableCell>{item.status}</TableCell>
+								{/* Add more table cells here */}
 							</TableRow>
 						))}
 					</TableBody>
