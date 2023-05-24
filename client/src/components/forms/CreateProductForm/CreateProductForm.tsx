@@ -4,12 +4,14 @@ import { useState } from "react"
 import { createProduct } from "../../../lib/products/products"
 import { getCookie } from "typescript-cookie"
 import { useNavigate } from "react-router"
+import { convertImageToBase64 } from "../../utils/utils"
 
 const CreateProductForm = () => {
 	const [isModaOpen, setIsModalOpen] = useState(false)
 	const [status, setStatus] = useState('')
 	const [total, setTotal] = useState(0)
 	const [name, setName] = useState('')
+	const [image, setImage] = useState<File | null>(null)
 	const navigate = useNavigate()
 
 	const handleOpen = () => {
@@ -20,13 +22,20 @@ const CreateProductForm = () => {
 		setIsModalOpen(false)
 	}
 
+	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files && e.target.files.length > 0) {
+			setImage(e.target.files[0]);
+		}
+	}
+
 	const handleClick = async () => {
 		setIsModalOpen(false);
 
 		try {
+			const convertedImage = await convertImageToBase64(image);
 			await createProduct(
 				getCookie('jwt-authorization') ?? '',
-				{ name: name, status: status, total: total, orderImage: '' })
+				{ name: name, status: status, total: total, orderImage: convertedImage })
 		} catch (error: any) {
 			navigate("/profile", { state: { message: `${error?.message}`, type: "error" } })
 
@@ -66,6 +75,11 @@ const CreateProductForm = () => {
 						<TextField value={status} onChange={(e) => setStatus(e.target.value)} label="Status ( Available/Rented ) " fullWidth />
 						<TextField value={name} onChange={(e) => setName(e.target.value)} label="Name" fullWidth />
 						<TextField value={total} onChange={(e) => setTotal(e.target.value as unknown as number)} label="Total" fullWidth type="number" />
+						<input
+							type="file"
+							accept="image/*"
+							onChange={handleImageChange}
+						/>
 						<Button
 							onClick={handleClick}
 							sx={{

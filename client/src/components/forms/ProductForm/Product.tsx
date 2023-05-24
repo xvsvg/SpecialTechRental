@@ -2,26 +2,47 @@ import { Box, Button, CardMedia, Divider, Modal, Stack, Typography } from "@mui/
 import { green, grey } from "@mui/material/colors";
 import { PurchaseForm } from "../PurchaseForm";
 import { useState } from "react";
+import { addProduct } from "../../../lib/users/users";
+import { getCookie } from "typescript-cookie";
+import { Notification } from "../../../features";
+import { useNavigate } from "react-router-dom";
 
 export interface IProduct {
+	id: string;
 	name: string;
 	total: number;
 	status: string;
 	image: string;
 }
 
-const Product = ({ name, total, status, image }: IProduct) => {
+const Product = ({ id, name, total, status, image }: IProduct) => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [message, setMessage] = useState<string | null>(null)
+	const navigate = useNavigate()
 
 	const handleClick = () => {
 		setIsModalOpen(true)
 	}
 
-	const handleCloseModal = () => {
+	const handleCloseModal = async () => {
 		setIsModalOpen(false)
 	}
+
+	const handleSubmit = async () => {
+		try {
+			setMessage(null)
+			await addProduct(getCookie('jwt-authorization') ?? '', getCookie('current-user') ?? '', id)
+			setMessage('Successfully bought it!');
+		} catch (error: any) {
+			setMessage(error?.response?.data?.Detailes)
+			navigate('/profile')
+		}
+	}
+
 	return (
 		<>
+			{message && message.includes('bought') && <Notification message={message} type={'success'} />}
+			{message && !message.includes('bought') && <Notification message={message} type={'warning'} />}
 			<Box sx={{ p: 2, display: 'flex', alignItems: 'center', backgroundColor: '#0a1929' }}>
 				<CardMedia component="img" src={image} alt={name} />
 			</Box>
@@ -45,7 +66,7 @@ const Product = ({ name, total, status, image }: IProduct) => {
 				</div>
 			</Box>
 			<Modal open={isModalOpen} onClose={handleCloseModal} sx={{ backdropFilter: "blur(5px)" }}>
-				<PurchaseForm />
+				<PurchaseForm total={total} onSubmit={handleSubmit} />
 			</Modal>
 		</>
 	);
