@@ -1,6 +1,5 @@
 import { Button, Box, Modal, FormControl, TextField } from "@mui/material"
 import { green } from "@mui/material/colors"
-import { borderRadius } from "@mui/system"
 import { useState } from "react"
 import { createProduct } from "../../../lib/products/products"
 import { getCookie } from "typescript-cookie"

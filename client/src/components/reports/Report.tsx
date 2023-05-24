@@ -36,7 +36,7 @@ const ExampleComponent = () => {
   return (
     <Box>
       <Typography>
-        <a href="#" onClick={downloadPDF}>
+        <a href="/report" onClick={downloadPDF}>
           Download PDF
         </a>
       </Typography>

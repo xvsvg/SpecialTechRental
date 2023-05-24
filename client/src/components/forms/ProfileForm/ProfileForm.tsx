@@ -66,7 +66,7 @@ const ProfileForm = ({ setError }: IProfileProps) => {
 		setIsEditing(false);
 
 		try {
-			const { data } = await createUserProfile(
+			await createUserProfile(
 				getCookie('jwt-authorization') ?? '',
 				getCookie('current-user') ?? '', {
 				firstName: editedFirstName,
