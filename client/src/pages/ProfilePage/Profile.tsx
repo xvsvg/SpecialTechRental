@@ -1,9 +1,8 @@
 import { Box } from "@mui/material"
 import { CreateProductForm, ItemTable, ProfileForm } from "../../components"
 import { useEffect, useState } from "react";
-import { getAllUsers } from "../../lib/users/users";
 import { getCookie } from "typescript-cookie";
-import { IProductPage, IUserPage } from "../../shared";
+import { IProductPage } from "../../shared";
 import { Notification } from "../../features";
 import { useLocation } from "react-router-dom";
 import { getIdentityUser } from "../../lib/identity/identity";

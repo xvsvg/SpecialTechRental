@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { LoginForm } from "../../components";
-import { Header, Notification } from "../../features";
+import { Notification } from "../../features";
 import { useLocation } from "react-router-dom";
 
 const Login = () => {

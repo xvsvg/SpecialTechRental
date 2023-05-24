@@ -1,5 +1,5 @@
 import { Box } from "@mui/material"
-import { Header, Notification } from "../../features"
+import { Notification } from "../../features"
 import { useLocation } from "react-router-dom";
 import { Pagination } from "../../components";
 
