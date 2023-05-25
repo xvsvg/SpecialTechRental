@@ -7,7 +7,7 @@ public record UserDto(
     string FirstName,
     string MiddleName,
     string LastName,
-    byte[] Image,
+    string Image,
     DateTime BirthDate,
     string Number,
     decimal Money,

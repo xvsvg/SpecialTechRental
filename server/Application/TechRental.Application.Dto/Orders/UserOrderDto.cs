@@ -4,6 +4,6 @@ public record UserOrderDto(
     Guid Id,
     string Status,
     string Name,
-    byte[] Image,
+    string Image,
     decimal Total,
     DateTime? OrderDate);

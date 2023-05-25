@@ -35,7 +35,7 @@ public class UserController : ControllerBase
             request.FirstName,
             request.MiddleName,
             request.LastName,
-            Convert.FromBase64String(request.UserImage ?? string.Empty),
+            request.UserImage ?? string.Empty,
             request.BirthDate,
             request.PhoneNumber);
 

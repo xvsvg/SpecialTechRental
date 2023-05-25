@@ -2,10 +2,10 @@
 
 public class Image
 {
-    public Image(byte[] image)
+    public Image(string image)
     {
         Value = image;
     }
 
-    public byte[] Value { get; }
+    public string Value { get; }
 }

@@ -23,3 +23,19 @@ services:
     environment:
         - ASPNETCORE_ENVIRONMENT=Production
     container_name: server
+
+  frontend:
+    container_name: client
+    build:
+      context: ../../client
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+  
+  proxy:
+    container_name: nginx
+    image: nginx:mainline
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - '80:8080'
