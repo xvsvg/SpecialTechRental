@@ -2,10 +2,14 @@
 
 public class AccessDeniedException : ApplicationException
 {
-    public AccessDeniedException() : base("Access denied") { }
+    public AccessDeniedException() : base("Access denied")
+    {
+    }
 
     private AccessDeniedException(string message)
-        : base(message) { }
+        : base(message)
+    {
+    }
 
     public static AccessDeniedException AccessViolation(Guid userId)
     {
@@ -14,7 +18,7 @@ public class AccessDeniedException : ApplicationException
 
     public static AccessDeniedException AccessViolation()
     {
-        return new AccessDeniedException($"User has not access to this field");
+        return new AccessDeniedException("User has not access to this field");
     }
 
     public static AccessDeniedException AnonymousUserHasNotAccess()
@@ -23,5 +27,7 @@ public class AccessDeniedException : ApplicationException
     }
 
     public static AccessDeniedException NotInRoleException()
-        => new AccessDeniedException("User hasn't got a privilege for this operation.");
+    {
+        return new AccessDeniedException("User hasn't got a privilege for this operation.");
+    }
 }

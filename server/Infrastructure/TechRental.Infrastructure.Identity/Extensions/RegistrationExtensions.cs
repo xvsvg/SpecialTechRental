@@ -52,7 +52,7 @@ public static class RegistrationExtensions
                     ValidAudience = config?.Audience,
                     ValidIssuer = config?.Issuer,
                     IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(config?.Secret ?? string.Empty)),
+                        Encoding.UTF8.GetBytes(config?.Secret ?? string.Empty))
                 };
                 options.Events = new JwtBearerEvents
                 {
@@ -66,7 +66,7 @@ public static class RegistrationExtensions
 
                         userManager.Authenticate(context.Principal);
                         return Task.CompletedTask;
-                    },
+                    }
                 };
             });
     }

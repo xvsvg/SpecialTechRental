@@ -1,8 +1,5 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using TechRental.Application.Abstractions.Identity;
-using TechRental.Application.Common.Exceptions;
-using TechRental.Application.Contracts.Users.Commands;
 using TechRental.DataAccess.Abstractions;
 using TechRental.Domain.Common.Exceptions;
 using TechRental.Domain.Core.Abstractions;

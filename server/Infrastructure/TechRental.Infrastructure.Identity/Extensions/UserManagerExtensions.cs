@@ -29,7 +29,7 @@ internal static class UserManagerExtensions
 
         if (user is null)
             throw EntityNotFoundException.For<User>(username);
-        
+
         return user;
     }
 }

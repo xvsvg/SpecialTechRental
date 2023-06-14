@@ -1,6 +1,5 @@
 ﻿using System.Security.Claims;
 using TechRental.Application.Abstractions.Identity;
-using TechRental.Application.Common.Exceptions;
 using TechRental.Domain.Common.Exceptions;
 
 namespace TechRental.Application.Users;
@@ -42,7 +41,7 @@ public class CurrentUserProxy : ICurrentUser, ICurrentUserManager
             .Single(x => x.Type.Equals(ClaimTypes.NameIdentifier, StringComparison.OrdinalIgnoreCase))
             .Value;
 
-        if (!Guid.TryParse(nameIdentifier, out Guid id))
+        if (!Guid.TryParse(nameIdentifier, out var id))
             throw new UnauthorizedException("Failed parse name identifier to guid");
 
         if (roles.Contains(TechRentalIdentityRoleNames.AdminRoleName))

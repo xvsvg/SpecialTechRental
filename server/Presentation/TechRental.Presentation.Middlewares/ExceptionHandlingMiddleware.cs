@@ -46,7 +46,7 @@ public class ExceptionHandlingMiddleware : IMiddleware
             Type = ex.GetType().Name,
             Detailes = ex.Message,
             Status = context.Response.StatusCode,
-            HelpLink = ex.HelpLink,
+            ex.HelpLink
         };
     }
 
@@ -54,10 +54,10 @@ public class ExceptionHandlingMiddleware : IMiddleware
     {
         return new Dictionary<Type, HttpStatusCode>
         {
-            {typeof(EntityNotFoundException), HttpStatusCode.NotFound },
-            {typeof(UnauthorizedException), HttpStatusCode.Unauthorized },
-            {typeof(UserInputException), HttpStatusCode.BadRequest },
-            {typeof(AccessDeniedException), HttpStatusCode.Forbidden }
+            { typeof(EntityNotFoundException), HttpStatusCode.NotFound },
+            { typeof(UnauthorizedException), HttpStatusCode.Unauthorized },
+            { typeof(UserInputException), HttpStatusCode.BadRequest },
+            { typeof(AccessDeniedException), HttpStatusCode.Forbidden }
         };
     }
 }

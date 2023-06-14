@@ -7,8 +7,8 @@ namespace TechRental.Application.Handlers.Identity;
 
 internal class UpdateUsernameHandler : IRequestHandler<Command, Response>
 {
-    private readonly ICurrentUser _currentUser;
     private readonly IAuthorizationService _authorizationService;
+    private readonly ICurrentUser _currentUser;
 
     public UpdateUsernameHandler(ICurrentUser currentUser, IAuthorizationService authorizationService)
     {

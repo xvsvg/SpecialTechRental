@@ -1,7 +1,7 @@
-﻿using TechRental.Domain.Core.Users;
-using TechRental.Infrastructure.DataAccess.ValueConverters;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TechRental.Domain.Core.Users;
+using TechRental.Infrastructure.DataAccess.ValueConverters;
 
 namespace TechRental.Infrastructure.DataAccess.EntityTypeConfiguration;
 

@@ -11,17 +11,23 @@ internal class AnonymousUser : ICurrentUser
     public bool CanCreateUserWithRole(string roleName)
     {
         return roleName.Equals(TechRentalIdentityRoleNames.DefaultUserRoleName, StringComparison.Ordinal)
-                ? true
-                : throw AccessDeniedException.AnonymousUserHasNotAccess();
+            ? true
+            : throw AccessDeniedException.AnonymousUserHasNotAccess();
     }
 
     public bool CanChangeUserRole(string currentRoleName, string newRoleName)
-        => throw AccessDeniedException.AnonymousUserHasNotAccess();
+    {
+        throw AccessDeniedException.AnonymousUserHasNotAccess();
+    }
 
 
     public bool CanManageOrders()
-        => throw AccessDeniedException.AnonymousUserHasNotAccess();
+    {
+        throw AccessDeniedException.AnonymousUserHasNotAccess();
+    }
 
     public bool CanManageBalance()
-        => throw AccessDeniedException.AnonymousUserHasNotAccess();
+    {
+        throw AccessDeniedException.AnonymousUserHasNotAccess();
+    }
 }

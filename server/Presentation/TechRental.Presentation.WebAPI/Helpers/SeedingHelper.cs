@@ -11,11 +11,10 @@ internal static class SeedingHelper
     {
         var mediator = provider.GetRequiredService<IMediator>();
         var logger = provider.GetRequiredService<ILogger<Program>>();
-        IConfigurationSection adminsSection = configuration.GetSection("Identity:DefaultAdmins");
+        var adminsSection = configuration.GetSection("Identity:DefaultAdmins");
         var admins = adminsSection.Get<AdminModel[]>() ?? Array.Empty<AdminModel>();
 
         foreach (var admin in admins)
-        {
             try
             {
                 var registerCommand = new CreateAdmin.Command(admin.Username, admin.Password);
@@ -26,9 +25,8 @@ internal static class SeedingHelper
             }
             catch (Exception ex)
             {
-                logger.LogWarning(ex.Message,"Failed to register admin {Username}", admin.Username);
+                logger.LogWarning(ex.Message, "Failed to register admin {Username}", admin.Username);
             }
-        }
     }
 
     internal static async Task SeedRoles(IServiceProvider provider)

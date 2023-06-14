@@ -4,7 +4,6 @@ using TechRental.Application.Common.Exceptions;
 using TechRental.DataAccess.Abstractions;
 using TechRental.Domain.Core.Abstractions;
 using TechRental.Domain.Core.Orders;
-using TechRental.Domain.Core.Users;
 using TechRental.Infrastructure.Mapping.Orders;
 using static TechRental.Application.Contracts.Orders.Commands.CreateOrder;
 

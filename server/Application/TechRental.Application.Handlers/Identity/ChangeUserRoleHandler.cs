@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using TechRental.Application.Abstractions.Identity;
-using TechRental.Application.Common;
 using TechRental.Application.Common.Exceptions;
 using static TechRental.Application.Contracts.Identity.Commands.ChangeUserRole;
 
@@ -8,8 +7,8 @@ namespace TechRental.Application.Handlers.Identity;
 
 internal class ChangeUserRoleHandler : IRequestHandler<Command>
 {
-    private readonly ICurrentUser _currentUser;
     private readonly IAuthorizationService _authorizationService;
+    private readonly ICurrentUser _currentUser;
 
     public ChangeUserRoleHandler(ICurrentUser currentUser, IAuthorizationService authorizationService)
     {

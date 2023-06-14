@@ -12,14 +12,22 @@ internal class AdminUser : ICurrentUser
     public Guid Id { get; }
 
     public bool CanCreateUserWithRole(string roleName)
-        => true;
+    {
+        return true;
+    }
 
     public bool CanChangeUserRole(string currentRoleName, string newRoleName)
-        => true;
+    {
+        return true;
+    }
 
     public bool CanManageOrders()
-        => true;
+    {
+        return true;
+    }
 
     public bool CanManageBalance()
-        => false;
+    {
+        return false;
+    }
 }

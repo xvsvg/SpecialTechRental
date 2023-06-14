@@ -2,6 +2,7 @@
 using TechRental.Domain.Core.Abstractions;
 using TechRental.Domain.Core.Orders;
 using TechRental.Domain.Core.ValueObject;
+
 #pragma warning disable CS8618
 
 namespace TechRental.Domain.Core.Users;
@@ -14,7 +15,6 @@ public class User
     protected User()
     {
         _orders = new List<Order>();
-
     }
 
     public User(
@@ -52,6 +52,7 @@ public class User
     public DateTime BirthDate { get; }
     public PhoneNumber PhoneNumber { get; }
     public virtual IEnumerable<Order> Orders => _orders;
+
     public decimal Money
     {
         get => _money;

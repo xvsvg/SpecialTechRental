@@ -16,12 +16,12 @@ services:
     image: application
     restart: always
     build:
-        context: ../
-        dockerfile: Presentation\TechRental.Presentation.WebAPI\Dockerfile
+      context: ../
+      dockerfile: Presentation\TechRental.Presentation.WebAPI\Dockerfile
     ports:
-        - "8080:80"
+      - "8080:80"
     environment:
-        - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Production
     container_name: server
 
   frontend:

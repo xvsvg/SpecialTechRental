@@ -1,5 +1,5 @@
-﻿using TechRental.Application.Dto.Identity;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using TechRental.Application.Dto.Identity;
 
 namespace TechRental.Infrastructure.Identity.Entities;
 

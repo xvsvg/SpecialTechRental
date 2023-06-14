@@ -1,13 +1,13 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using TechRental.Infrastructure.Identity.Entities;
-using TechRental.Application.Abstractions.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using TechRental.Application.Abstractions.Identity;
 using TechRental.Application.Dto.Identity;
 using TechRental.Domain.Common.Exceptions;
+using TechRental.Infrastructure.Identity.Entities;
 using TechRental.Infrastructure.Identity.Extensions;
 using TechRental.Infrastructure.Identity.Tools;
 
@@ -15,9 +15,9 @@ namespace TechRental.Infrastructure.Identity.Services;
 
 internal class AuthorizationService : IAuthorizationService
 {
-    private readonly UserManager<TechRentalIdentityUser> _userManager;
-    private readonly RoleManager<TechRentalIdentityRole> _roleManager;
     private readonly IdentityConfiguration _configuration;
+    private readonly RoleManager<TechRentalIdentityRole> _roleManager;
+    private readonly UserManager<TechRentalIdentityUser> _userManager;
 
     public AuthorizationService(
         UserManager<TechRentalIdentityUser> userManager,
@@ -31,7 +31,7 @@ internal class AuthorizationService : IAuthorizationService
 
     public async Task AuthorizeAdminAsync(string username, CancellationToken cancellationToken = default)
     {
-        TechRentalIdentityUser? user = await _userManager.FindByNameAsync(username);
+        var user = await _userManager.FindByNameAsync(username);
 
         if (user is not null && await _userManager.IsInRoleAsync(user, TechRentalIdentityRoleNames.AdminRoleName))
             return;
@@ -55,7 +55,7 @@ internal class AuthorizationService : IAuthorizationService
         {
             Id = userId,
             UserName = username,
-            SecurityStamp = Guid.NewGuid().ToString(),
+            SecurityStamp = Guid.NewGuid().ToString()
         };
 
         var result = await _userManager.CreateAsync(user, password);
@@ -78,7 +78,7 @@ internal class AuthorizationService : IAuthorizationService
         IEnumerable<Guid> userIds,
         CancellationToken cancellationToken = default)
     {
-        List<TechRentalIdentityUser> users = await _userManager.Users
+        var users = await _userManager.Users
             .Where(x => userIds.Contains(x.Id))
             .ToListAsync(cancellationToken);
 
@@ -115,7 +115,8 @@ internal class AuthorizationService : IAuthorizationService
         CancellationToken cancellationToken = default)
     {
         if (currentPassword.Equals(newPassword, StringComparison.Ordinal))
-            throw UserInputException.IdentityOperationNotSucceededException("New password cannot be the same as old password");
+            throw UserInputException.IdentityOperationNotSucceededException(
+                "New password cannot be the same as old password");
 
         var user = await _userManager.GetByIdAsync(userId, cancellationToken);
 

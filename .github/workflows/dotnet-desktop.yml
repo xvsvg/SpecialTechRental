@@ -12,18 +12,18 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: checkout
-      uses: actions/checkout@v3
+      - name: checkout
+        uses: actions/checkout@v3
 
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
 
-    - name: Restore dependencies
-      run: msbuild /restore desktop/TechRental.Desktop.sln
-      
-    - name: Build
-      run: msbuild /p:Configuration=Release desktop/TechRental.Desktop.sln
-      
+      - name: Restore dependencies
+        run: msbuild /restore desktop/TechRental.Desktop.sln
+
+      - name: Build
+        run: msbuild /p:Configuration=Release desktop/TechRental.Desktop.sln
+    
     #- name: Test
     #  run: |
     #    cd desktop

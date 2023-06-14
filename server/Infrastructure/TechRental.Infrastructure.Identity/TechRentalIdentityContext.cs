@@ -4,7 +4,8 @@ using TechRental.Infrastructure.Identity.Entities;
 
 namespace TechRental.Infrastructure.Identity;
 
-internal sealed class TechRentalIdentityContext : IdentityDbContext<TechRentalIdentityUser, TechRentalIdentityRole, Guid>
+internal sealed class
+    TechRentalIdentityContext : IdentityDbContext<TechRentalIdentityUser, TechRentalIdentityRole, Guid>
 {
     public TechRentalIdentityContext(DbContextOptions<TechRentalIdentityContext> options)
         : base(options)

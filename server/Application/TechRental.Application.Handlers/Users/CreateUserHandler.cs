@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using TechRental.Application.Abstractions.Identity;
 using TechRental.DataAccess.Abstractions;
 using TechRental.Domain.Core.Abstractions;
 using TechRental.Domain.Core.Users;

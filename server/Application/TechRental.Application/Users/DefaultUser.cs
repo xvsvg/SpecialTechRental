@@ -12,14 +12,22 @@ internal class DefaultUser : ICurrentUser
     public Guid Id { get; }
 
     public bool CanCreateUserWithRole(string roleName)
-        => false;
+    {
+        return false;
+    }
 
     public bool CanChangeUserRole(string currentRoleName, string newRoleName)
-        => false;
+    {
+        return false;
+    }
 
     public bool CanManageOrders()
-        => false;
+    {
+        return false;
+    }
 
     public bool CanManageBalance()
-        => true;
+    {
+        return true;
+    }
 }

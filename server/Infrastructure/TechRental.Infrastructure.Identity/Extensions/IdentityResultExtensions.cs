@@ -1,5 +1,5 @@
-﻿using TechRental.Domain.Common.Exceptions;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using TechRental.Domain.Common.Exceptions;
 
 namespace TechRental.Infrastructure.Identity.Extensions;
 
@@ -10,6 +10,6 @@ internal static class IdentityResultExtensions
         if (result.Succeeded is false)
             throw UserInputException.IdentityOperationNotSucceededException(
                 string.Join(' ',
-                result.Errors.Select(x => x.Description)));
+                    result.Errors.Select(x => x.Description)));
     }
 }

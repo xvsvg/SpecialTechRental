@@ -21,7 +21,7 @@ public class UserController : ControllerBase
     }
 
     /// <summary>
-    /// Creates user account with all his personnel data
+    ///     Creates user account with all his personnel data
     /// </summary>
     /// <param name="request"></param>
     /// <param name="identityId">identity id that is trying to create profile</param>
@@ -45,7 +45,7 @@ public class UserController : ControllerBase
     }
 
     /// <summary>
-    /// Adds order to user purchase bucket
+    ///     Adds order to user purchase bucket
     /// </summary>
     /// <param name="userId">Target user id</param>
     /// <param name="request">Target order id</param>
@@ -61,7 +61,7 @@ public class UserController : ControllerBase
     }
 
     /// <summary>
-    /// Removes order from user purchase bucket
+    ///     Removes order from user purchase bucket
     /// </summary>
     /// <param name="userId">Target user id</param>
     /// <param name="request">Target order id</param>
@@ -77,7 +77,7 @@ public class UserController : ControllerBase
     }
 
     /// <summary>
-    /// Gets specified user
+    ///     Gets specified user
     /// </summary>
     /// <param name="id">Target user id</param>
     /// <returns>Information about specified user</returns>
@@ -92,7 +92,7 @@ public class UserController : ControllerBase
     }
 
     /// <summary>
-    /// Gets all users
+    ///     Gets all users
     /// </summary>
     /// <returns>All users</returns>
     [HttpGet]
@@ -111,7 +111,7 @@ public class UserController : ControllerBase
     }
 
     /// <summary>
-    /// Make deposit to customer account
+    ///     Make deposit to customer account
     /// </summary>
     /// <param name="id">Target customer id</param>
     /// <param name="request">Money amount to be replenished</param>
@@ -125,5 +125,4 @@ public class UserController : ControllerBase
 
         return Ok();
     }
-
 }

@@ -23,7 +23,7 @@ using (var scope = app.Services.CreateScope())
     var principal = new ClaimsPrincipal(new ClaimsIdentity(new[]
     {
         new Claim(ClaimTypes.Role, TechRentalIdentityRoleNames.AdminRoleName),
-        new Claim(ClaimTypes.NameIdentifier, Guid.Empty.ToString()),
+        new Claim(ClaimTypes.NameIdentifier, Guid.Empty.ToString())
     }));
 
     var currentUserManager = scope.ServiceProvider.GetRequiredService<ICurrentUserManager>();

@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using TechRental.Application.Abstractions.Identity;
 using TechRental.Application.Contracts.Orders.Commands;
 using TechRental.Application.Contracts.Orders.Queries;
@@ -22,7 +21,7 @@ public class OrderController : ControllerBase
     }
 
     /// <summary>
-    /// Changes order status to the provided one
+    ///     Changes order status to the provided one
     /// </summary>
     /// <param name="request">Order id and new status</param>
     /// <returns></returns>
@@ -37,7 +36,7 @@ public class OrderController : ControllerBase
     }
 
     /// <summary>
-    /// Registers new order in the system
+    ///     Registers new order in the system
     /// </summary>
     /// <param name="request">Order information</param>
     /// <returns>Information about created order</returns>
@@ -56,7 +55,7 @@ public class OrderController : ControllerBase
     }
 
     /// <summary>
-    /// Gets specified order
+    ///     Gets specified order
     /// </summary>
     /// <param name="orderId">Target order id</param>
     /// <returns>Information about specified order</returns>
@@ -71,7 +70,7 @@ public class OrderController : ControllerBase
     }
 
     /// <summary>
-    /// Lists all orders registered in the system
+    ///     Lists all orders registered in the system
     /// </summary>
     /// <returns>Information about all orders</returns>
     [HttpGet]

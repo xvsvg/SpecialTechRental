@@ -1,6 +1,7 @@
 ﻿using TechRental.Domain.Common.Exceptions;
 using TechRental.Domain.Core.Abstractions;
 using TechRental.Domain.Core.Users;
+
 #pragma warning disable CS8618
 
 namespace TechRental.Domain.Core.Orders;
@@ -9,7 +10,9 @@ public class Order
 {
     private decimal _totalPrice;
 
-    protected Order() { }
+    protected Order()
+    {
+    }
 
     public Order(
         Guid id,

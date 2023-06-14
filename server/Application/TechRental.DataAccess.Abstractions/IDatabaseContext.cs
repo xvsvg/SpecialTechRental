@@ -1,6 +1,6 @@
-﻿using TechRental.Domain.Core.Orders;
+﻿using Microsoft.EntityFrameworkCore;
+using TechRental.Domain.Core.Orders;
 using TechRental.Domain.Core.Users;
-using Microsoft.EntityFrameworkCore;
 
 namespace TechRental.DataAccess.Abstractions;
 

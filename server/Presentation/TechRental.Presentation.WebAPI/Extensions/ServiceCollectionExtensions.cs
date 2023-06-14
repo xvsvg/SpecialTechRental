@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using System.Reflection;
 using TechRental.Application.Extensions;
 using TechRental.Infrastructure.DataAccess.Extensions;
 using TechRental.Infrastructure.Identity.Extensions;
@@ -25,7 +22,7 @@ internal static class ServiceCollectionExtensions
             .AddApplicationPart(typeof(IControllerProjectMarker).Assembly)
             .AddControllersAsServices();
 
-        string connectionString = webApiConfiguration.PostgresConfiguration
+        var connectionString = webApiConfiguration.PostgresConfiguration
             .ToConnectionString(webApiConfiguration.DbNamesConfiguration.ApplicationDbName);
 
         collection
@@ -40,7 +37,7 @@ internal static class ServiceCollectionExtensions
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer",
+                    Scheme = "Bearer"
                 };
 
                 c.AddSecurityDefinition("Bearer", openApiSecurityScheme);
@@ -53,10 +50,10 @@ internal static class ServiceCollectionExtensions
                             Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" },
                             Scheme = "oauth2",
                             Name = "Bearer",
-                            In = ParameterLocation.Header,
+                            In = ParameterLocation.Header
                         },
                         new List<string>()
-                    },
+                    }
                 });
 
                 var xmlFilename = $"{typeof(IControllerProjectMarker).Assembly.GetName().Name}.xml";

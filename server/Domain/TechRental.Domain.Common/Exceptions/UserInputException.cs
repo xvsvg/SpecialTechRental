@@ -2,23 +2,37 @@
 
 public class UserInputException : DomainException
 {
-    private UserInputException() : base() { }
+    private UserInputException()
+    {
+    }
 
     private UserInputException(string message)
-        : base(message) { }
+        : base(message)
+    {
+    }
 
     public static UserInputException InvalidPhoneNumberException(string message)
-        => new UserInputException(message);
+    {
+        return new UserInputException(message);
+    }
 
     public static UserInputException NegativeOrderTotalException()
-        => new UserInputException();
+    {
+        return new UserInputException();
+    }
 
     public static UserInputException NegativeUserBalanceException(string message)
-        => new UserInputException(message);
+    {
+        return new UserInputException(message);
+    }
 
     public static UserInputException UpdateUsernameFailedException(string message)
-        => new UserInputException(message);
+    {
+        return new UserInputException(message);
+    }
 
     public static UserInputException IdentityOperationNotSucceededException(string message)
-        => new UserInputException(message);
+    {
+        return new UserInputException(message);
+    }
 }
