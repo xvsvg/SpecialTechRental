@@ -20,6 +20,9 @@ COPY ["Infrastructure/TechRental.Infrastructure.DataAccess/TechRental.Infrastruc
 COPY ["Infrastructure/TechRental.Infrastructure.Identity/TechRental.Infrastructure.Identity.csproj", "Infrastructure/TechRental.Infrastructure.Identity/"]
 COPY ["Presentation/TechRental.Presentation.Controllers/TechRental.Presentation.Controllers.csproj", "Presentation/TechRental.Presentation.Controllers/"]
 COPY ["Presentation/TechRental.Presentation.Contracts/TechRental.Presentation.Contracts.csproj", "Presentation/TechRental.Presentation.Contracts/"]
+COPY ["Presentation/TechRental.Presentation.Middlewares/TechRental.Presentation.Middlewares.csproj", "Presentation/TechRental.Presentation.Middlewares/"]
+COPY ["../Directory.Build.props", "../"]
+COPY ["../Directory.Packages.props", "../"]
 RUN dotnet restore "Presentation/TechRental.Presentation.WebAPI/TechRental.Presentation.WebAPI.csproj"
 COPY . .
 WORKDIR "/src/Presentation/TechRental.Presentation.WebAPI"
