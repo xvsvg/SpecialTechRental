@@ -1,5 +1,4 @@
 # SpecialTechRental
-Client-Server REST TS+C# application, Clean architecture + DDD, MUI
 
 <h2>Startup</h2>
 
